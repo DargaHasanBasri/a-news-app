@@ -16,12 +16,12 @@ class _HomePageState extends BaseStatefulState<HomePage> {
     return Scaffold(
       body: Container(
         width: double.maxFinite,
-        color: Colors.red,
+        color: CustomColors.white,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "First Commit",
+              "Home",
               style: TextStyle(
                 fontSize: 16,
                 color: CustomColors.black,
