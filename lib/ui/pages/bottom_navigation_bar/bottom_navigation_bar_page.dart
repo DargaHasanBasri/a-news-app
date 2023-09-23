@@ -40,18 +40,49 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
       body: ValueListenableBuilder(
           valueListenable: vm.pageIndex,
           builder: (_, __, ___) {
-            return PageView(
-              physics: const NeverScrollableScrollPhysics(),
-              controller: pageController,
-              scrollDirection: Axis.horizontal,
-              children: pages,
-              onPageChanged: (value) {
-                vm.pageIndex.value = value;
-                FocusScope.of(context).requestFocus(FocusNode());
-              },
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                _buildAppBar(),
+                Expanded(
+                  child: PageView(
+                    physics: const NeverScrollableScrollPhysics(),
+                    controller: pageController,
+                    scrollDirection: Axis.horizontal,
+                    children: pages,
+                    onPageChanged: (value) {
+                      vm.pageIndex.value = value;
+                      FocusScope.of(context).requestFocus(FocusNode());
+                    },
+                  ),
+                ),
+              ],
             );
           }),
       bottomNavigationBar: _customBottomNavigationBar(),
+    );
+  }
+
+  Widget _buildAppBar() {
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.red,
+        borderRadius: BorderRadius.only(
+          bottomRight: Radius.circular(34),
+          bottomLeft: Radius.circular(34),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 30),
+        child: Center(
+          child: Text(
+            "A-News-App",
+            style: TextStyle(
+              color: CustomColors.black,
+            ),
+          ),
+        ),
+      ),
     );
   }
 
@@ -64,7 +95,7 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
             child: Container(
               decoration: BoxDecoration(
                 color: CustomColors.customBottomNavigationColor,
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(22),
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
