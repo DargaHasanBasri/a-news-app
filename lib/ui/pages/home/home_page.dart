@@ -14,21 +14,21 @@ class _HomePageState extends BaseStatefulState<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.maxFinite,
-        color: CustomColors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
+      backgroundColor: CustomColors.white,
+      body: ListView.builder(
+        physics: const BouncingScrollPhysics(),
+        itemCount: 100,
+        itemBuilder: (context, index) {
+          return Center(
+            child: Text(
               "Home",
               style: TextStyle(
                 fontSize: 16,
                 color: CustomColors.black,
               ),
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
