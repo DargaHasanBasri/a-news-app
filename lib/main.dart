@@ -1,12 +1,15 @@
+import 'package:a_news_app/services/service_locator.dart';
 import 'package:a_news_app/utils/route_helper.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+Future<void> main() async {
   runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  await setupLocator();
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
