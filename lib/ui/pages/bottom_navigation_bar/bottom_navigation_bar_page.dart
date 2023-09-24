@@ -43,7 +43,11 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                _buildAppBar(),
+                ValueListenableBuilder(
+                    valueListenable: vm.isOpen,
+                    builder: (_, __, ___) {
+                      return _customAppBar();
+                    }),
                 Expanded(
                   child: PageView(
                     physics: const NeverScrollableScrollPhysics(),
@@ -63,27 +67,67 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
     );
   }
 
-  Widget _buildAppBar() {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Colors.red,
-        borderRadius: BorderRadius.only(
-          bottomRight: Radius.circular(34),
-          bottomLeft: Radius.circular(34),
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 30),
-        child: Center(
-          child: Text(
-            "A-News-App",
-            style: TextStyle(
-              color: CustomColors.black,
+  Widget _customAppBar() {
+    return ValueListenableBuilder(
+        valueListenable: vm.isOpen,
+        builder: (_, __, ___) {
+          return Container(
+            decoration: const BoxDecoration(
+              color: Colors.red,
+              borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(20),
+                bottomLeft: Radius.circular(20),
+              ),
             ),
-          ),
-        ),
-      ),
-    );
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: InkWell(
+                    onTap: () {},
+                    child: Ink(
+                      child: Image.asset(
+                        "images/ic_menu.png",
+                        width: 30,
+                        height: 30,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 26),
+                  child: Text(
+                    "A-News-App",
+                    style: TextStyle(
+                      color: CustomColors.black,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: GestureDetector(
+                    onTap: () => vm.pageIndex.value == 0
+                        ? (vm.isOpen.value = !vm.isOpen.value)
+                        : vm.isOpen.value = vm.isOpen.value,
+                    child: Image.asset(
+                      vm.pageIndex.value == 0
+                          ? (vm.isOpen.value ? "images/ic_open_list.png" : "images/ic_close_list.png")
+                          : vm.pageIndex.value == 1
+                              ? "images/ic_home.png"
+                              : vm.pageIndex.value == 2
+                                  ? "images/ic_settings.png"
+                                  : "images/ic_settings.png",
+                      width: 30,
+                      height: 30,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
   }
 
   Widget _customBottomNavigationBar() {
