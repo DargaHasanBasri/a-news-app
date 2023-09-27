@@ -5,7 +5,8 @@ import 'home_page.dart';
 import 'home_view_model.dart';
 
 class HomeProvider extends StatelessWidget {
-  const HomeProvider({Key? key}) : super(key: key);
+  const HomeProvider({super.key});
+
 
   @override
   Widget build(BuildContext context) {
