@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       onGenerateRoute: RouteHelper.generateRoute,
-      initialRoute: RouteHelper.bottomNavigation,
+      initialRoute: RouteHelper.onBoarding,
     );
   }
 }

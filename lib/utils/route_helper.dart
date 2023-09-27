@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../ui/pages/bottom_navigation_bar/bottom_navigation_bar_provider.dart';
 import '../ui/pages/discover/discover_provider.dart';
+import '../ui/pages/error_page/error_null_navigation_provider.dart';
 import '../ui/pages/forgot_password/forgot_password_provider.dart';
 import '../ui/pages/home/home_provider.dart';
 import '../ui/pages/login/login_provider.dart';
@@ -20,6 +21,7 @@ class RouteHelper {
   static const String notifications = 'NotificationsProvider';
   static const String discover = 'DiscoverProvider';
   static const String bottomNavigation = 'BottomNavigationBarProvider';
+  static const String errorNullNavigation = 'ErrorNullNavigationProvider';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -41,6 +43,8 @@ class RouteHelper {
         return MaterialPageRoute(builder: (context) => const DiscoverProvider());
       case RouteHelper.bottomNavigation:
         return MaterialPageRoute(builder: (context) => const BottomNavigationBarProvider());
+      case RouteHelper.errorNullNavigation:
+        return MaterialPageRoute(builder: (context) => const ErrorNullNavigationProvider());
       default:
         return MaterialPageRoute(
           builder: (context) => Scaffold(
