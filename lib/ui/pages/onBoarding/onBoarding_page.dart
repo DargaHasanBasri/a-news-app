@@ -34,87 +34,84 @@ class _OnBoardingPageState extends BaseStatefulState<OnBoardingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColors.white,
-      body: Container(
-        color: Colors.red,
-        child: Column(
-          children: [
-            const SizedBox(height: 40),
-            Text(
-              "Onboarding Page",
-              style: TextStyle(
-                fontSize: 18,
-                color: CustomColors.black,
-              ),
-              textAlign: TextAlign.center,
+      backgroundColor: Colors.red,
+      body: Column(
+        children: [
+          const SizedBox(height: 40),
+          Text(
+            "Onboarding Page",
+            style: TextStyle(
+              fontSize: 18,
+              color: CustomColors.black,
             ),
-            Expanded(
-              child: PageView.builder(
-                physics: const BouncingScrollPhysics(),
-                itemCount: pages.length,
-                controller: _pageController,
-                scrollDirection: Axis.horizontal,
-                onPageChanged: (value) {},
-                itemBuilder: (BuildContext context, int index) {
-                  return pages[index];
-                },
-              ),
+            textAlign: TextAlign.center,
+          ),
+          Expanded(
+            child: PageView.builder(
+              physics: const BouncingScrollPhysics(),
+              itemCount: pages.length,
+              controller: _pageController,
+              scrollDirection: Axis.horizontal,
+              onPageChanged: (value) {},
+              itemBuilder: (BuildContext context, int index) {
+                return pages[index];
+              },
             ),
-            Column(
-              children: [
-                Stack(
-                  fit: StackFit.loose,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: SmoothPageIndicator(
-                          controller: _pageController,
-                          count: pages.length,
-                          effect: const ExpandingDotsEffect(
-                            activeDotColor: Colors.yellow,
-                            dotColor: Colors.black,
-                            spacing: 10,
-                            dotHeight: 8,
-                            dotWidth: 14,
-                            expansionFactor: 4,
-                          ),
-                          onDotClicked: (index) {
-                            _pageController.animateToPage(
-                              index,
-                              duration: const Duration(milliseconds: 500),
-                              curve: Curves.ease,
-                            );
-                          },
+          ),
+          Column(
+            children: [
+              Stack(
+                fit: StackFit.loose,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: SmoothPageIndicator(
+                        controller: _pageController,
+                        count: pages.length,
+                        effect: const ExpandingDotsEffect(
+                          activeDotColor: Colors.yellow,
+                          dotColor: Colors.black,
+                          spacing: 10,
+                          dotHeight: 8,
+                          dotWidth: 14,
+                          expansionFactor: 4,
                         ),
+                        onDotClicked: (index) {
+                          _pageController.animateToPage(
+                            index,
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.ease,
+                          );
+                        },
                       ),
                     ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          splashColor: Colors.white,
-                          onTap: () => _pageController.jumpToPage(2),
-                          child: Ink(
-                            padding: const EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                              color: Colors.transparent,
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: const Text(
-                              "Skip",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w300,
-                              ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        splashColor: Colors.white,
+                        onTap: () => _pageController.jumpToPage(2),
+                        child: Ink(
+                          padding: const EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: const Text(
+                            "Skip",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w300,
                             ),
                           ),
                         ),
@@ -122,10 +119,10 @@ class _OnBoardingPageState extends BaseStatefulState<OnBoardingPage> {
                     ),
                   ),
                 ),
-              ],
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

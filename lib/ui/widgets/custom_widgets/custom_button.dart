@@ -33,23 +33,35 @@ class CustomButton extends StatefulWidget {
 class _CustomButtonState extends BaseStatefulState<CustomButton> {
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(widget.borderRadius),
-      child: Material(
-        child: InkWell(
-          onTap: () => widget.onPress?.call(),
-          child: Ink(
-            height: 40,
-            decoration: BoxDecoration(
-              color: widget.backgroundColor,
-              borderRadius: BorderRadius.circular(widget.borderRadius),
-            ),
-            child: Center(
-              child: Text(
-                widget.title ?? "",
-                style: TextStyle(
-                  color: widget.titleFontColor,
-                  fontSize: widget.titleFontSize,
+    return Container(
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.3),
+            blurRadius: 10,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(widget.borderRadius),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: () => widget.onPress?.call(),
+            child: Ink(
+              height: 40,
+              decoration: BoxDecoration(
+                color: widget.backgroundColor,
+                borderRadius: BorderRadius.circular(widget.borderRadius),
+              ),
+              child: Center(
+                child: Text(
+                  widget.title ?? "",
+                  style: TextStyle(
+                    color: widget.titleFontColor,
+                    fontSize: widget.titleFontSize,
+                  ),
                 ),
               ),
             ),

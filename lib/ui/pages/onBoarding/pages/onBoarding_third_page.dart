@@ -23,24 +23,30 @@ class _OnBoardingThirdPageState extends BaseStatefulState<OnBoardingThirdPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CustomColors.white,
-      body: Container(
-        width: double.maxFinite,
-        color: CustomColors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 40),
+            child: Text(
               "Onboarding Third Page",
               style: TextStyle(
                 fontSize: 16,
                 color: CustomColors.black,
               ),
             ),
-            CustomButton(
-              onPress: () => navigationService.navigateTo(RouteHelper.bottomNavigation),
+          ),
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 40),
+            child: CustomButton(
+              //onPress: () => navigationService.navigateTo(RouteHelper.bottomNavigation),
+              backgroundColor: CustomColors.niceColor,
+              title: "Login",
+              titleFontSize: 22,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
