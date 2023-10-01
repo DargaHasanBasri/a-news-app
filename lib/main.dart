@@ -3,6 +3,8 @@ import 'package:a_news_app/utils/route_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'services/navigation_service.dart';
+
 Future<void> main() async {
   runApp(const MyApp());
   SystemChrome.setSystemUIOverlayStyle(
@@ -15,8 +17,15 @@ Future<void> main() async {
 
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  NavigationService? navigationService = locator<NavigationService>();
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +36,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.black,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      navigatorKey: locator<NavigationService>().baseNavigatorKey,
       onGenerateRoute: RouteHelper.generateRoute,
       initialRoute: RouteHelper.onBoarding,
     );
