@@ -6,6 +6,7 @@ import '../../../utils/custom_colors.dart';
 class CustomTextFormField extends StatefulWidget {
   final TextEditingController controller;
   final String hintText;
+  final double borderRadius;
   final Function? onChanged;
   final bool? multiline;
   final int? maxLines;
@@ -22,6 +23,7 @@ class CustomTextFormField extends StatefulWidget {
     super.key,
     required this.controller,
     String? hintText,
+    double? borderRadius,
     String? textFieldName,
     bool? multiline,
     bool? isAutoTrue,
@@ -35,6 +37,7 @@ class CustomTextFormField extends StatefulWidget {
     this.onChanged,
     this.isRequired = false,
   })  : inputType = inputType ?? TextInputType.text,
+        borderRadius = borderRadius ?? 16.0,
         textFieldBgColor = textFieldBgColor ?? Colors.white,
         disabledBorderColor = disabledBorderColor ?? CustomColors.black.withOpacity(0.3),
         enabledBorderColor = enabledBorderColor ?? CustomColors.black.withOpacity(0.3),
@@ -68,28 +71,28 @@ class _CustomTextFormFieldState extends BaseStatefulState<CustomTextFormField> {
         filled: true,
         fillColor: widget.textFieldBgColor,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(widget.borderRadius),
           borderSide: BorderSide(
             color: widget.borderColor,
             width: 2,
           ),
         ),
         disabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(widget.borderRadius),
           borderSide: BorderSide(
             color: widget.disabledBorderColor,
             width: 2,
           ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(widget.borderRadius),
           borderSide: BorderSide(
             color: widget.enabledBorderColor,
             width: 2,
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(widget.borderRadius),
           borderSide: BorderSide(
             color: widget.focusedBorderColor,
             width: 2,
