@@ -40,7 +40,7 @@ class _OnBoardingThirdPageState extends BaseStatefulState<OnBoardingThirdPage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 40),
             child: CustomButton(
-              //onPress: () => navigationService.navigateTo(RouteHelper.bottomNavigation),
+              onPress: () => navigationService.navigateTo(RouteHelper.login),
               backgroundColor: CustomColors.niceColor,
               title: "Login",
               titleFontSize: 22,
