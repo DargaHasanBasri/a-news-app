@@ -7,6 +7,7 @@ class CustomButton extends StatefulWidget {
   final Color? backgroundColor;
   final String? title;
   final double titleFontSize;
+  final FontWeight titleFontWeight;
   final Color? titleFontColor;
   final double borderRadius;
   final Function? onPress;
@@ -16,6 +17,7 @@ class CustomButton extends StatefulWidget {
       Color? backgroundColor,
       String? title,
       double? titleFontSize,
+      FontWeight? titleFontWeight,
       Color? titleFontColor,
       double? borderRadius,
       Function? onPress})
@@ -24,6 +26,7 @@ class CustomButton extends StatefulWidget {
         titleFontColor = titleFontColor ?? CustomColors.white,
         borderRadius = borderRadius ?? 25.0,
         titleFontSize = titleFontSize ?? 18.0,
+        titleFontWeight = titleFontWeight ?? FontWeight.w400,
         onPress = onPress ?? (() {});
 
   @override
@@ -50,7 +53,7 @@ class _CustomButtonState extends BaseStatefulState<CustomButton> {
           child: InkWell(
             onTap: () => widget.onPress?.call(),
             child: Ink(
-              height: 40,
+              height: 60,
               decoration: BoxDecoration(
                 color: widget.backgroundColor,
                 borderRadius: BorderRadius.circular(widget.borderRadius),
@@ -61,6 +64,7 @@ class _CustomButtonState extends BaseStatefulState<CustomButton> {
                   style: TextStyle(
                     color: widget.titleFontColor,
                     fontSize: widget.titleFontSize,
+                    fontWeight: widget.titleFontWeight,
                   ),
                 ),
               ),
