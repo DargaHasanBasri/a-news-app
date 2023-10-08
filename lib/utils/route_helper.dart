@@ -1,3 +1,4 @@
+import 'package:a_news_app/ui/pages/splash/splash_provider.dart';
 import 'package:flutter/material.dart';
 
 import '../ui/pages/bottom_navigation_bar/bottom_navigation_bar_provider.dart';
@@ -12,6 +13,7 @@ import '../ui/pages/register/register_provider.dart';
 import '../ui/pages/search/search_provider.dart';
 
 class RouteHelper {
+  static const String splash = 'SplashProvider';
   static const String home = 'HomeProvider';
   static const String onBoarding = 'OnBoardingProvider';
   static const String login = 'LoginProvider';
@@ -25,6 +27,8 @@ class RouteHelper {
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case RouteHelper.splash:
+        return MaterialPageRoute(builder: (context) => const SplashProvider());
       case RouteHelper.home:
         return MaterialPageRoute(builder: (context) => const HomeProvider());
       case RouteHelper.onBoarding:

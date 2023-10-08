@@ -14,7 +14,6 @@ Future<void> main() async {
   );
   WidgetsFlutterBinding.ensureInitialized();
   await setupLocator();
-
 }
 
 class MyApp extends StatefulWidget {
@@ -38,7 +37,7 @@ class _MyAppState extends State<MyApp> {
       ),
       navigatorKey: locator<NavigationService>().baseNavigatorKey,
       onGenerateRoute: RouteHelper.generateRoute,
-      initialRoute: RouteHelper.onBoarding,
+      initialRoute: RouteHelper.splash,
     );
   }
 }
