@@ -37,32 +37,35 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      body: ValueListenableBuilder(
-          valueListenable: vm.pageIndex,
-          builder: (_, __, ___) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                ValueListenableBuilder(
-                    valueListenable: vm.isOpen,
-                    builder: (_, __, ___) {
-                      return _customAppBar();
-                    }),
-                Expanded(
-                  child: PageView(
-                    physics: const NeverScrollableScrollPhysics(),
-                    controller: pageController,
-                    scrollDirection: Axis.horizontal,
-                    children: pages,
-                    onPageChanged: (value) {
-                      vm.pageIndex.value = value;
-                      FocusScope.of(context).requestFocus(FocusNode());
-                    },
+      body: SafeArea(
+        bottom: false,
+        child: ValueListenableBuilder(
+            valueListenable: vm.pageIndex,
+            builder: (_, __, ___) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  ValueListenableBuilder(
+                      valueListenable: vm.isOpen,
+                      builder: (_, __, ___) {
+                        return _customAppBar();
+                      }),
+                  Expanded(
+                    child: PageView(
+                      physics: const NeverScrollableScrollPhysics(),
+                      controller: pageController,
+                      scrollDirection: Axis.horizontal,
+                      children: pages,
+                      onPageChanged: (value) {
+                        vm.pageIndex.value = value;
+                        FocusScope.of(context).requestFocus(FocusNode());
+                      },
+                    ),
                   ),
-                ),
-              ],
-            );
-          }),
+                ],
+              );
+            }),
+      ),
       bottomNavigationBar: _customBottomNavigationBar(),
     );
   }
