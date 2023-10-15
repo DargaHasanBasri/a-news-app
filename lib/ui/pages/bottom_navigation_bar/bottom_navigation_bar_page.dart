@@ -21,8 +21,8 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
 
   final List<Widget> pages = [
     const HomeProvider(),
-    const DiscoverProvider(),
     const NotificationsProvider(),
+    const DiscoverProvider(),
     const SearchProvider(),
   ];
 
@@ -118,7 +118,7 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
                       vm.pageIndex.value == 0
                           ? (vm.isOpen.value ? "images/ic_open_list.png" : "images/ic_close_list.png")
                           : vm.pageIndex.value == 1
-                              ? "images/ic_home.png"
+                              ? "images/ic_home_active.png"
                               : vm.pageIndex.value == 2
                                   ? "images/ic_settings.png"
                                   : "images/ic_settings.png",
@@ -138,56 +138,111 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
         valueListenable: vm.pageIndex,
         builder: (_, __, ___) {
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 20,
+            ),
             child: Container(
               decoration: BoxDecoration(
                 color: CustomColors.customBottomNavigationColor,
                 borderRadius: BorderRadius.circular(22),
               ),
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16),
+                padding: const EdgeInsets.symmetric(vertical: 4),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    InkWell(
-                      onTap: () => pageController.jumpToPage(0),
-                      child: Ink(
-                        child: Image.asset(
-                          "images/ic_home.png",
-                          width: 20,
-                          height: 20,
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        InkWell(
+                          onTap: () => pageController.jumpToPage(0),
+                          child: Ink(
+                            child: Image.asset(
+                              vm.pageIndex.value == 0 ? "images/ic_home_active.png" : "images/ic_home_inactive.png",
+                              width: 30,
+                              height: 30,
+                            ),
+                          ),
                         ),
-                      ),
+                        Text(
+                          "Home",
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: vm.pageIndex.value == 0 ? CustomColors.black : CustomColors.black.withOpacity(0.3),
+                          ),
+                        ),
+                      ],
                     ),
-                    InkWell(
-                      onTap: () => pageController.jumpToPage(1),
-                      child: Ink(
-                        child: Image.asset(
-                          "images/ic_home.png",
-                          width: 20,
-                          height: 20,
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        InkWell(
+                          onTap: () => pageController.jumpToPage(1),
+                          child: Ink(
+                            child: Image.asset(
+                              vm.pageIndex.value == 1 ? "images/ic_favorite_active.png" : "images/ic_favorite_inactive.png",
+                              width: 30,
+                              height: 30,
+                            ),
+                          ),
                         ),
-                      ),
+                        Text(
+                          "Discover",
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: vm.pageIndex.value == 1 ? CustomColors.black : CustomColors.black.withOpacity(0.3),
+                          ),
+                        ),
+                      ],
                     ),
-                    InkWell(
-                      onTap: () => pageController.jumpToPage(2),
-                      child: Ink(
-                        child: Image.asset(
-                          "images/ic_home.png",
-                          width: 20,
-                          height: 20,
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        InkWell(
+                          onTap: () => pageController.jumpToPage(2),
+                          child: Ink(
+                            child: Image.asset(
+                              vm.pageIndex.value == 2 ? "images/ic_favorite_active.png" : "images/ic_favorite_inactive.png",
+                              width: 30,
+                              height: 30,
+                            ),
+                          ),
                         ),
-                      ),
+                        Text(
+                          "Favorite",
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: vm.pageIndex.value == 2 ? CustomColors.black : CustomColors.black.withOpacity(0.3),
+                          ),
+                        ),
+                      ],
                     ),
-                    InkWell(
-                      onTap: () => pageController.jumpToPage(3),
-                      child: Ink(
-                        child: Image.asset(
-                          "images/ic_home.png",
-                          width: 20,
-                          height: 20,
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        InkWell(
+                          onTap: () => pageController.jumpToPage(3),
+                          child: Ink(
+                            child: Image.asset(
+                              vm.pageIndex.value == 3 ? "images/ic_profile_active.png" : "images/ic_profile_inactive.png",
+                              width: 30,
+                              height: 30,
+                            ),
+                          ),
                         ),
-                      ),
+                        Text(
+                          "Search",
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: vm.pageIndex.value == 3 ? CustomColors.black : CustomColors.black.withOpacity(0.3),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
