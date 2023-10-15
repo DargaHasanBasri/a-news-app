@@ -33,6 +33,7 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
     super.initState();
     vm = Provider.of<BottomNavigationBarViewModel>(context, listen: false);
     pageController = PageController(initialPage: 0);
+    vm.fetchCurrency();
   }
 
   @override
