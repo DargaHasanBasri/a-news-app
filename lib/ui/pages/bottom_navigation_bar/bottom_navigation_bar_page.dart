@@ -33,6 +33,8 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
     super.initState();
     vm = Provider.of<BottomNavigationBarViewModel>(context, listen: false);
     pageController = PageController(initialPage: 0);
+    listeners();
+    showProgress(context);
     vm.fetchCurrency();
   }
 
@@ -271,6 +273,7 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           DrawerHeader(
+            margin: EdgeInsets.zero,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -279,6 +282,7 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
                     GestureDetector(
                       onTap: () {},
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
                             decoration: const BoxDecoration(
@@ -334,14 +338,36 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
                             ),
                           ),
                           const SizedBox(height: 10),
-                          Text(
-                            "2775,271",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: CustomColors.black,
-                            ),
-                          ),
+                          ValueListenableBuilder(
+                              valueListenable: vm.currencyResponseNotifier,
+                              builder: (_, __, ___) {
+                                return Row(
+                                  children: [
+                                    (vm.currencyResponseNotifier.value?.c?.dYon ?? "puuuh") != "minus"
+                                        ? Image.asset(
+                                            "images/ic_caret_arrow.png",
+                                            width: 20,
+                                          )
+                                        : RotatedBox(
+                                            quarterTurns: 2,
+                                            child: Image.asset(
+                                              "images/ic_caret_arrow.png",
+                                              width: 20,
+                                              color: Colors.red,
+                                            ),
+                                          ),
+                                    const SizedBox(width: 10),
+                                    Text(
+                                      vm.currencyResponseNotifier.value?.c?.alis ?? "-",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                        color: CustomColors.black,
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              }),
                         ],
                       ),
                     ),
@@ -375,27 +401,19 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
               ],
             ),
           ),
-          const Expanded(
-            child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CustomCategories(title: 'Tümü'),
-                  CustomCategories(title: 'Konular'),
-                  CustomCategories(title: 'Gündem'),
-                  CustomCategories(title: 'Bilim'),
-                  CustomCategories(title: 'Yazılım'),
-                  CustomCategories(title: 'Sinema & TV'),
-                  CustomCategories(title: 'Kültür & Sanat'),
-                  CustomCategories(title: 'Gezi'),
-                  CustomCategories(title: 'Spor'),
-                  CustomCategories(title: 'Eğlence'),
-                  CustomCategories(title: 'Sağlık'),
-                  CustomCategories(title: 'Teknoloji'),
-                  CustomCategories(title: 'Yaşam'),
-                ],
-              ),
+          Expanded(
+            child: ListView.separated(
+              physics: const BouncingScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: vm.categoriesTitle.length,
+              itemBuilder: (context, index) {
+                return CustomCategories(
+                  title: vm.categoriesTitle[index],
+                );
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return const SizedBox(height: 10);
+              },
             ),
           ),
           const SizedBox(height: 10),
@@ -403,5 +421,12 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
       ),
     );
   }
-}
 
+  listeners() {
+    vm.currencyResponseNotifier.addListener(() {
+      if (vm.currencyResponseNotifier.value != null) {
+        hideProgress();
+      }
+    });
+  }
+}

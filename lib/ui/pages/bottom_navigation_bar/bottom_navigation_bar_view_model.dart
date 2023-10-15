@@ -13,4 +13,18 @@ class BottomNavigationBarViewModel extends BaseViewModel {
     currencyResponseNotifier.value = response;
   }
 
+  List<String> categoriesTitle = [
+    "Tümü",
+    "Konular",
+    "Gündem",
+    "Bilim",
+    "Yazılım",
+    "Kültür & Sanat",
+    "Gezi",
+    "Spor",
+    "Eğlence",
+    "Sağlık",
+    "Teknoloji",
+    "Yaşam",
+  ];
 }
