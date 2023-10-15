@@ -7,6 +7,7 @@ import 'package:a_news_app/utils/custom_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'bottom_navigation_bar_view_model.dart';
+import 'components/custom_categories.dart';
 
 class BottomNavigationBarPage extends StatefulWidget {
   const BottomNavigationBarPage({Key? key}) : super(key: key);
@@ -18,6 +19,7 @@ class BottomNavigationBarPage extends StatefulWidget {
 class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBarPage> {
   late final BottomNavigationBarViewModel vm;
   late PageController pageController;
+  final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
 
   final List<Widget> pages = [
     const HomeProvider(),
@@ -37,6 +39,8 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
+      key: _drawerKey,
+      drawer: _customDrawer(),
       body: SafeArea(
         bottom: false,
         child: ValueListenableBuilder(
@@ -88,7 +92,9 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      _drawerKey.currentState!.openDrawer();
+                    },
                     child: Ink(
                       child: Image.asset(
                         "images/ic_menu.png",
@@ -182,7 +188,9 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
                           onTap: () => pageController.jumpToPage(1),
                           child: Ink(
                             child: Image.asset(
-                              vm.pageIndex.value == 1 ? "images/ic_favorite_active.png" : "images/ic_favorite_inactive.png",
+                              vm.pageIndex.value == 1
+                                  ? "images/ic_favorite_active.png"
+                                  : "images/ic_favorite_inactive.png",
                               width: 30,
                               height: 30,
                             ),
@@ -205,7 +213,9 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
                           onTap: () => pageController.jumpToPage(2),
                           child: Ink(
                             child: Image.asset(
-                              vm.pageIndex.value == 2 ? "images/ic_favorite_active.png" : "images/ic_favorite_inactive.png",
+                              vm.pageIndex.value == 2
+                                  ? "images/ic_favorite_active.png"
+                                  : "images/ic_favorite_inactive.png",
                               width: 30,
                               height: 30,
                             ),
@@ -228,7 +238,9 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
                           onTap: () => pageController.jumpToPage(3),
                           child: Ink(
                             child: Image.asset(
-                              vm.pageIndex.value == 3 ? "images/ic_profile_active.png" : "images/ic_profile_inactive.png",
+                              vm.pageIndex.value == 3
+                                  ? "images/ic_profile_active.png"
+                                  : "images/ic_profile_inactive.png",
                               width: 30,
                               height: 30,
                             ),
@@ -251,4 +263,144 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
           );
         });
   }
+
+  Widget _customDrawer() {
+    return Drawer(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          DrawerHeader(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {},
+                      child: Row(
+                        children: [
+                          Container(
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.red,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Image.asset(
+                                "images/ic_arrow_right.png",
+                                color: CustomColors.white,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Text(
+                            "Giriş Yap",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: CustomColors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const Spacer(),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Image.asset(
+                        "images/ic_settings.png",
+                        width: 20,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Çeyrek Altın",
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: CustomColors.black,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            "2775,271",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: CustomColors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Hava Durumu",
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: CustomColors.black,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            "19",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: CustomColors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const Expanded(
+            child: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomCategories(title: 'Tümü'),
+                  CustomCategories(title: 'Konular'),
+                  CustomCategories(title: 'Gündem'),
+                  CustomCategories(title: 'Bilim'),
+                  CustomCategories(title: 'Yazılım'),
+                  CustomCategories(title: 'Sinema & TV'),
+                  CustomCategories(title: 'Kültür & Sanat'),
+                  CustomCategories(title: 'Gezi'),
+                  CustomCategories(title: 'Spor'),
+                  CustomCategories(title: 'Eğlence'),
+                  CustomCategories(title: 'Sağlık'),
+                  CustomCategories(title: 'Teknoloji'),
+                  CustomCategories(title: 'Yaşam'),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+        ],
+      ),
+    );
+  }
 }
+
