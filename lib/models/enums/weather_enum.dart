@@ -1,0 +1,12 @@
+class WeatherType {
+
+}
+
+enum WeatherTypeEnum {
+  RAINY_MORNING,
+  SUNNY_MORNING,
+  PARTLY_CLOUDY_MORNING,
+  RAINY_NIGHT,
+  PARTLY_CLOUDY_NIGHT,
+  CLEAR_NIGHT,
+}

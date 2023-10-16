@@ -37,7 +37,7 @@ class _MyAppState extends State<MyApp> {
       ),
       navigatorKey: locator<NavigationService>().baseNavigatorKey,
       onGenerateRoute: RouteHelper.generateRoute,
-      initialRoute: RouteHelper.bottomNavigation,
+      initialRoute: RouteHelper.weather,
     );
   }
 }
