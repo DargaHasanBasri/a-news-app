@@ -11,6 +11,7 @@ import '../ui/pages/notifications/notifications_provider.dart';
 import '../ui/pages/onBoarding/onBoarding_provider.dart';
 import '../ui/pages/register/register_provider.dart';
 import '../ui/pages/search/search_provider.dart';
+import '../ui/pages/weather/weather_provider.dart';
 
 class RouteHelper {
   static const String splash = 'SplashProvider';
@@ -24,6 +25,7 @@ class RouteHelper {
   static const String discover = 'DiscoverProvider';
   static const String bottomNavigation = 'BottomNavigationBarProvider';
   static const String errorNullNavigation = 'ErrorNullNavigationProvider';
+  static const String weather = 'WeatherProvider';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -49,6 +51,8 @@ class RouteHelper {
         return MaterialPageRoute(builder: (context) => const BottomNavigationBarProvider());
       case RouteHelper.errorNullNavigation:
         return MaterialPageRoute(builder: (context) => const ErrorNullNavigationProvider());
+        case RouteHelper.weather:
+        return MaterialPageRoute(builder: (context) => const WeatherProvider());
       default:
         return MaterialPageRoute(
           builder: (context) => Scaffold(

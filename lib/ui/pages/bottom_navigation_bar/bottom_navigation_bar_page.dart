@@ -6,6 +6,7 @@ import 'package:a_news_app/ui/pages/home/home_provider.dart';
 import 'package:a_news_app/ui/pages/notifications/notifications_provider.dart';
 import 'package:a_news_app/ui/pages/search/search_provider.dart';
 import 'package:a_news_app/utils/custom_colors.dart';
+import 'package:a_news_app/utils/route_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'bottom_navigation_bar_view_model.dart';
@@ -375,27 +376,30 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Hava Durumu",
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              color: CustomColors.black,
+                      child: GestureDetector(
+                        onTap: () => navigationService.navigateTo(RouteHelper.weather) ,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Hava Durumu",
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                                color: CustomColors.black,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 10),
-                          Text(
-                            "19",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: CustomColors.black,
+                            const SizedBox(height: 10),
+                            Text(
+                              "19",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: CustomColors.black,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ],

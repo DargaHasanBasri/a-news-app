@@ -7,21 +7,23 @@ import 'package:http/http.dart' as http;
 import '../utils/constants.dart';
 
 class ApiBase {
-  Future<Map<String, String>> getHeader(bool? isToken) async {
-    var apiKey = Constants.NOSY_API_KEY;
-
-    if (isToken ?? false) {
+  Future<Map<String, String>> getHeader(String? apiKey) async {
+    if (apiKey == Constants.NOSY_API_KEY) {
       return {
         "Authorization": "Bearer $apiKey",
+      };
+    } else if (apiKey == Constants.WEATHER_API_KEY) {
+      return {
+        "key": "$apiKey",
       };
     } else {
       return {};
     }
   }
 
-  Future<http.Response> get(String url, bool? isToken) async {
+  Future<http.Response> get(String url, String? apiKey) async {
     http.Response apiResponse;
-    var header = await getHeader(true);
+    var header = await getHeader(apiKey);
     debugPrint('API GET REQUEST -----> URL : $url\nREQUEST HEADER : $header');
     try {
       apiResponse = await http.get(Uri.parse(url), headers: header);
