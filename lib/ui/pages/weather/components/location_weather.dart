@@ -7,7 +7,8 @@ class LocationWeather extends StatefulWidget {
 
   const LocationWeather({
     super.key,
-    required this.location, required this.degrees,
+    required this.location,
+    required this.degrees,
   });
 
   @override
@@ -17,34 +18,44 @@ class LocationWeather extends StatefulWidget {
 class _LocationWeatherState extends State<LocationWeather> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.yellow,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            "images/ic_home_inactive.png",
-            width: 20,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Image.asset(
+          "images/ic_home_inactive.png",
+          width: 20,
+        ),
+        Text(
+          widget.location ?? "-",
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w700,
+            color: CustomColors.black,
           ),
-          Text(
-            widget.location ?? "-",
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w700,
-              color: CustomColors.black,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "${widget.degrees}" ?? "0°",
+              style: TextStyle(
+                fontSize: 66,
+                fontWeight: FontWeight.w700,
+                color: CustomColors.black,
+              ),
             ),
-          ),
-          Text(
-            widget.degrees ?? "0°",
-            style: TextStyle(
-              fontSize: 66,
-              fontWeight: FontWeight.w700,
-              color: CustomColors.black,
+            Text(
+              "°",
+              style: TextStyle(
+                fontSize: 50,
+                fontWeight: FontWeight.w700,
+                color: CustomColors.black,
+              ),
             ),
-          ),
-        ],
-      ),
+          ],
+        ),
+      ],
     );
   }
 }
-

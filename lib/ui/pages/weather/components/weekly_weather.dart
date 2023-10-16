@@ -38,25 +38,23 @@ class _WeeklyWeatherState extends BaseStatefulState<WeeklyWeather> {
             ),
           ),
           const Spacer(),
-          Expanded(
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Image.asset(
-                  widget.imageAddress ?? "images/ic_home_inactive.png",
-                  width: 20,
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                widget.degrees ?? "0°",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: CustomColors.black,
                 ),
-                const SizedBox(width: 10),
-                Text(
-                  widget.degrees ?? "0°",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: CustomColors.black,
-                  ),
-                )
-              ],
-            ),
+              ),
+              const SizedBox(width: 10),
+              Image.asset(
+                widget.imageAddress ?? "images/ic_home_inactive.png",
+                width: 20,
+              ),
+            ],
           ),
         ],
       ),
