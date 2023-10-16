@@ -4,12 +4,27 @@ import 'package:a_news_app/base/api_exception.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import '../utils/constants.dart';
+
 class ApiBase {
-  Future<http.Response> get(String url) async {
+  Future<Map<String, String>> getHeader(bool? isToken) async {
+    var apiKey = Constants.NOSY_API_KEY;
+
+    if (isToken ?? false) {
+      return {
+        "Authorization": "Bearer $apiKey",
+      };
+    } else {
+      return {};
+    }
+  }
+
+  Future<http.Response> get(String url, bool? isToken) async {
     http.Response apiResponse;
-    debugPrint('API GET REQUEST -----> URL : $url\nREQUEST');
+    var header = await getHeader(true);
+    debugPrint('API GET REQUEST -----> URL : $url\nREQUEST HEADER : $header');
     try {
-      apiResponse = await http.get(Uri.parse(url));
+      apiResponse = await http.get(Uri.parse(url), headers: header);
     } on SocketException {
       debugPrint('NO NETWORK');
       throw FetchDataException('No Internet connection');

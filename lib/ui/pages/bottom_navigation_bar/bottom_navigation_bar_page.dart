@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:a_news_app/base/base_stateful_state.dart';
 import 'package:a_news_app/ui/pages/discover/discover_provider.dart';
 import 'package:a_news_app/ui/pages/home/home_provider.dart';
@@ -33,9 +35,9 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
     super.initState();
     vm = Provider.of<BottomNavigationBarViewModel>(context, listen: false);
     pageController = PageController(initialPage: 0);
-    listeners();
-    showProgress(context);
-    vm.fetchCurrency();
+    //listeners();
+    //showProgress(context);
+    //vm.fetchNosyCurrency("ceyrek-altin");
   }
 
   @override
@@ -339,11 +341,11 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
                           ),
                           const SizedBox(height: 10),
                           ValueListenableBuilder(
-                              valueListenable: vm.currencyResponseNotifier,
+                              valueListenable: vm.currencyNosyResponseNotifier,
                               builder: (_, __, ___) {
                                 return Row(
                                   children: [
-                                    (vm.currencyResponseNotifier.value?.c?.dYon ?? "puuuh") != "minus"
+                                    (vm.currencyNosyResponseNotifier.value?.data?.first.changeRate ?? 0) > 0
                                         ? Image.asset(
                                             "images/ic_caret_arrow.png",
                                             width: 20,
@@ -358,7 +360,7 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
                                           ),
                                     const SizedBox(width: 10),
                                     Text(
-                                      vm.currencyResponseNotifier.value?.c?.alis ?? "-",
+                                      "${vm.currencyNosyResponseNotifier.value?.data?.first.selling}" ?? "-",
                                       style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w600,
@@ -423,10 +425,12 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
   }
 
   listeners() {
-    vm.currencyResponseNotifier.addListener(() {
-      if (vm.currencyResponseNotifier.value != null) {
-        hideProgress();
+    vm.currencyNosyResponseNotifier.addListener(() {
+      /*
+      if (vm.currencyNosyResponseNotifier.value != null) {
+        //hideProgress();
       }
+       */
     });
   }
 }

@@ -1,4 +1,4 @@
-class CurrencyResponseModel {
+class GenelApiCurrencyResponseModel {
   Btc? usd;
   Btc? eur;
   Btc? gbp;
@@ -9,7 +9,7 @@ class CurrencyResponseModel {
   Btc? eth;
   Xu100? xu100;
 
-  CurrencyResponseModel({
+  GenelApiCurrencyResponseModel({
     this.usd,
     this.eur,
     this.gbp,
@@ -21,7 +21,7 @@ class CurrencyResponseModel {
     this.xu100,
   });
 
-  factory CurrencyResponseModel.fromJson(Map<String, dynamic> json) => CurrencyResponseModel(
+  factory GenelApiCurrencyResponseModel.fromJson(Map<String, dynamic> json) => GenelApiCurrencyResponseModel(
     usd: json["USD"] == null ? null : Btc.fromJson(json["USD"]),
     eur: json["EUR"] == null ? null : Btc.fromJson(json["EUR"]),
     gbp: json["GBP"] == null ? null : Btc.fromJson(json["GBP"]),

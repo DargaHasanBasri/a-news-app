@@ -1,16 +1,22 @@
 import 'package:a_news_app/base/base_view_model.dart';
 import 'package:flutter/foundation.dart';
 
-import '../../../models/response/currency_response_model.dart';
+import '../../../models/response/genel_para_api_currency_response_model.dart';
+import '../../../models/response/nosy_api_currency_response_model.dart';
 
 class BottomNavigationBarViewModel extends BaseViewModel {
   ValueNotifier<int> pageIndex = ValueNotifier(0);
   ValueNotifier<bool> isOpen = ValueNotifier(false);
-  ValueNotifier<CurrencyResponseModel?> currencyResponseNotifier = ValueNotifier(null);
+  ValueNotifier<GenelApiCurrencyResponseModel?> currencyResponseNotifier = ValueNotifier(null);
+  ValueNotifier<NosyApiCurrencyResponseModel?> currencyNosyResponseNotifier = ValueNotifier(null);
 
   void fetchCurrency() async {
     final response = await repository.getCurrency();
     currencyResponseNotifier.value = response;
+  }
+  void fetchNosyCurrency(String whichCurrency) async {
+    final response = await repository.getNosyCurrency(whichCurrency);
+    currencyNosyResponseNotifier.value = response;
   }
 
   List<String> categoriesTitle = [
