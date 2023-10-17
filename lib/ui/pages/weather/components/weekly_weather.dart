@@ -66,6 +66,7 @@ class _WeeklyWeatherState extends BaseStatefulState<WeeklyWeather> {
               const SizedBox(width: 10),
               Image.asset(
                 widget.imageAddress ?? "images/ic_home_inactive.png",
+                height: 20,
                 width: 20,
               ),
             ],
