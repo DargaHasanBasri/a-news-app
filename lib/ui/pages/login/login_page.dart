@@ -1,6 +1,7 @@
 import 'package:a_news_app/base/base_stateful_state.dart';
 import 'package:a_news_app/ui/widgets/custom_widgets/custom_button.dart';
 import 'package:a_news_app/utils/custom_colors.dart';
+import 'package:a_news_app/utils/route_helper.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -130,7 +131,9 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
                           title: "Continue",
                           titleFontSize: 20,
                           titleFontWeight: FontWeight.w700,
-                          onPress: () {},
+                          onPress: () {
+                            navigationService.navigateTo(RouteHelper.bottomNavigation);
+                          },
                         ),
                       ),
                       const Padding(

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:a_news_app/base/base_stateful_state.dart';
 import 'package:a_news_app/ui/pages/discover/discover_provider.dart';
 import 'package:a_news_app/ui/pages/home/home_provider.dart';
@@ -36,8 +34,7 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
     super.initState();
     vm = Provider.of<BottomNavigationBarViewModel>(context, listen: false);
     pageController = PageController(initialPage: 0);
-    //listeners();
-    //showProgress(context);
+    listeners();
     //vm.fetchNosyCurrency("ceyrek-altin");
   }
 
@@ -100,6 +97,8 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
                   child: InkWell(
                     onTap: () {
                       _drawerKey.currentState!.openDrawer();
+                      showProgress(context);
+                      vm.fetchForeCastHourlyWeather("Samsun", 7);
                     },
                     child: Ink(
                       child: Image.asset(
@@ -374,34 +373,59 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: GestureDetector(
-                        onTap: () => navigationService.navigateTo(RouteHelper.weather) ,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Hava Durumu",
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                                color: CustomColors.black,
+                    ValueListenableBuilder(
+                        valueListenable: vm.foreCastHourlyWeatherResponseNotifier,
+                        builder: (_, __, ___) {
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 10),
+                            child: GestureDetector(
+                              onTap: () => navigationService.navigateTo(
+                                RouteHelper.weather,
+                                arguments: vm.foreCastHourlyWeatherResponseNotifier.value,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    vm.foreCastHourlyWeatherResponseNotifier.value?.location?.name?.toUpperCase() ??
+                                        "-",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                      color: CustomColors.black,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        vm.foreCastHourlyWeatherResponseNotifier.value?.current?.tempC
+                                                ?.toInt()
+                                                .toString() ??
+                                            "-",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600,
+                                          color: CustomColors.black,
+                                        ),
+                                      ),
+                                      Text(
+                                        "°",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700,
+                                          color: CustomColors.black,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
                             ),
-                            const SizedBox(height: 10),
-                            Text(
-                              "19",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                color: CustomColors.black,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                          );
+                        }),
                   ],
                 ),
               ],
@@ -435,6 +459,9 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
         //hideProgress();
       }
        */
+    });
+    vm.foreCastHourlyWeatherResponseNotifier.addListener(() {
+      hideProgress();
     });
   }
 }

@@ -41,13 +41,27 @@ class _WeeklyWeatherState extends BaseStatefulState<WeeklyWeather> {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                widget.degrees ?? "0°",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: CustomColors.black,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.degrees ?? "0°",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: CustomColors.black,
+                    ),
+                  ),
+                  Text(
+                    "°",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: CustomColors.black,
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(width: 10),
               Image.asset(

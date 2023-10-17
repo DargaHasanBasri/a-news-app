@@ -1,6 +1,7 @@
 import 'package:a_news_app/ui/pages/splash/splash_provider.dart';
 import 'package:flutter/material.dart';
 
+import '../models/response/fore_cast_response_model.dart';
 import '../ui/pages/bottom_navigation_bar/bottom_navigation_bar_provider.dart';
 import '../ui/pages/discover/discover_provider.dart';
 import '../ui/pages/error_page/error_null_navigation_provider.dart';
@@ -52,7 +53,8 @@ class RouteHelper {
       case RouteHelper.errorNullNavigation:
         return MaterialPageRoute(builder: (context) => const ErrorNullNavigationProvider());
         case RouteHelper.weather:
-        return MaterialPageRoute(builder: (context) => const WeatherProvider());
+          ForeCastResponseModel foreCastModel = settings.arguments as ForeCastResponseModel;
+        return MaterialPageRoute(builder: (context) => WeatherProvider(foreCastModel));
       default:
         return MaterialPageRoute(
           builder: (context) => Scaffold(

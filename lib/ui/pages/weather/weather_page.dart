@@ -32,9 +32,6 @@ class _WeatherPageState extends BaseStatefulState<WeatherPage> {
     _hourlyScrollController = ScrollController();
     _pageScrollController = ScrollController();
     listeners();
-    showProgress(context);
-    vm.fetchCurrentWeather("Samsun");
-    vm.fetchForeCastHourlyWeather("Samsun", 7);
   }
 
   @override
@@ -43,83 +40,76 @@ class _WeatherPageState extends BaseStatefulState<WeatherPage> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: ValueListenableBuilder(
-              valueListenable: vm.currentWeatherResponseNotifier,
-              builder: (_, __, ___) {
-                return Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20),
-                      child: _buildAppBar(),
-                    ),
-                    Expanded(
-                      child: SingleChildScrollView(
-                        controller: _pageScrollController,
-                        physics: const BouncingScrollPhysics(),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Center(
-                              child: LocationWeather(
-                                location: 'Samsun',
-                                degrees: vm.currentWeatherResponseNotifier.value?.current?.tempC.toString() ?? "-",
-                              ),
-                            ),
-                            const SizedBox(height: 20),
-                            ValueListenableBuilder(
-                                valueListenable: vm.foreCastHourlyWeatherResponseNotifier,
-                                builder: (_, __, ___) {
-                                  return SizedBox(
-                                    height: 100,
-                                    child: ListView.separated(
-                                      controller: _hourlyScrollController,
-                                      physics: const BouncingScrollPhysics(),
-                                      scrollDirection: Axis.horizontal,
-                                      itemCount: vm.foreCastHourlyWeatherResponseNotifier.value?.forecast?.forecastday?.first.hour?.length ??
-                                          0,
-                                      itemBuilder: (context, index) {
-                                        return HourlyWeather(
-                                          date: Extensions.getHourDate(vm.foreCastHourlyWeatherResponseNotifier.value?.forecast?.forecastday?.first.hour?[index].time),
-                                          degrees: "${vm.foreCastHourlyWeatherResponseNotifier.value?.forecast?.forecastday?.first.hour?[index].tempC ?? "-"}",
-                                          imageAddress: vm.imageAddress[index],
-                                        );
-                                      },
-                                      separatorBuilder: (context, index) {
-                                        return const SizedBox(width: 10);
-                                      },
-                                    ),
-                                  );
-                                }),
-                            const SizedBox(height: 20),
-                            Text(
-                              "HAFTALIK GÖRÜNÜM",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
-                                color: CustomColors.black,
-                              ),
-                            ),
-                            const SizedBox(height: 20),
-                            ListView.builder(
-                              controller: _weeklyScrollController,
-                              physics: const NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: vm.foreCastHourlyWeatherResponseNotifier.value?.forecast?.forecastday?.length ?? 0,
-                              itemBuilder: (context, index) {
-                                return WeeklyWeather(
-                                  day: Extensions.getDayDate(vm.foreCastHourlyWeatherResponseNotifier.value?.forecast?.forecastday?[index].date),
-                                  degrees: "${vm.foreCastHourlyWeatherResponseNotifier.value?.forecast?.forecastday?[index].day?.maxtempC ?? "-"}",
-                                  imageAddress: vm.imagesAddress2[index],
-                                );
-                              },
-                            ),
-                          ],
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: _buildAppBar(),
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  controller: _pageScrollController,
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: LocationWeather(
+                          location: 'Samsun',
+                          degrees: vm.foreCastModel?.current?.tempC?.toInt().toString() ?? "-",
                         ),
                       ),
-                    ),
-                  ],
-                );
-              }),
+                      const SizedBox(height: 20),
+                      SizedBox(
+                        height: 100,
+                        child: ListView.separated(
+                          controller: _hourlyScrollController,
+                          physics: const BouncingScrollPhysics(),
+                          scrollDirection: Axis.horizontal,
+                          itemCount: vm.foreCastModel?.forecast?.forecastday?.first.hour?.length ?? 0,
+                          itemBuilder: (context, index) {
+                            return HourlyWeather(
+                              date: Extensions.getHourDate(
+                                  vm.foreCastModel?.forecast?.forecastday?.first.hour?[index].time),
+                              degrees:
+                                  "${vm.foreCastModel?.forecast?.forecastday?.first.hour?[index].tempC?.toInt() ?? "-"}",
+                              imageAddress: vm.imageAddress[index],
+                            );
+                          },
+                          separatorBuilder: (context, index) {
+                            return const SizedBox(width: 10);
+                          },
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Text(
+                        "HAFTALIK GÖRÜNÜM",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: CustomColors.black,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      ListView.builder(
+                        controller: _weeklyScrollController,
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: vm.foreCastModel?.forecast?.forecastday?.length ?? 0,
+                        itemBuilder: (context, index) {
+                          return WeeklyWeather(
+                            day: Extensions.getDayDate(vm.foreCastModel?.forecast?.forecastday?[index].date),
+                            degrees: "${vm.foreCastModel?.forecast?.forecastday?[index].day?.maxtempC?.toInt() ?? "-"}",
+                            imageAddress: vm.imagesAddress2[index],
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -129,22 +119,45 @@ class _WeatherPageState extends BaseStatefulState<WeatherPage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Icon(
-          Icons.arrow_back_ios,
-          color: CustomColors.black,
-          size: 20,
+        ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: Material(
+            child: InkWell(
+              onTap: () => navigationService.popIfBackStackNotEmpty(),
+              child: Ink(
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Image.asset(
+                    "images/ic_arrow_back.png",
+                    height: 20,
+                    width: 20,
+                  ),
+                ),
+              ),
+            ),
+          ),
         ),
-        Image.asset(
-          "images/ic_settings.png",
-          width: 20,
+        ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: Material(
+            child: InkWell(
+              onTap: () {},
+              child: Ink(
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Image.asset(
+                    "images/ic_settings.png",
+                    width: 20,
+                    height: 20,
+                  ),
+                ),
+              ),
+            ),
+          ),
         ),
       ],
     );
   }
 
-  listeners() {
-    vm.foreCastHourlyWeatherResponseNotifier.addListener(() {
-      hideProgress();
-    });
-  }
+  listeners() {}
 }
