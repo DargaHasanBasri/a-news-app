@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 
+import '../../../models/enums/weather_enum.dart';
 import '../../../utils/custom_colors.dart';
 import '../../../utils/extensions.dart';
 import 'components/hourly_weather.dart';
@@ -22,6 +23,7 @@ class _WeatherPageState extends BaseStatefulState<WeatherPage> {
   late final ScrollController _weeklyScrollController;
   late final ScrollController _hourlyScrollController;
   late final ScrollController _pageScrollController;
+  late final WeatherType _weatherType;
 
   @override
   void initState() {
@@ -31,6 +33,7 @@ class _WeatherPageState extends BaseStatefulState<WeatherPage> {
     _weeklyScrollController = ScrollController();
     _hourlyScrollController = ScrollController();
     _pageScrollController = ScrollController();
+    _weatherType = WeatherType();
     listeners();
   }
 
@@ -57,6 +60,7 @@ class _WeatherPageState extends BaseStatefulState<WeatherPage> {
                         child: LocationWeather(
                           location: 'Samsun',
                           degrees: vm.foreCastModel?.current?.tempC?.toInt().toString() ?? "-",
+                          imageAddress: _weatherType.getIconAddress(_weatherType.getEnumType(vm.foreCastModel?.current?.condition?.text)),
                         ),
                       ),
                       const SizedBox(height: 20),
@@ -73,7 +77,7 @@ class _WeatherPageState extends BaseStatefulState<WeatherPage> {
                                   vm.foreCastModel?.forecast?.forecastday?.first.hour?[index].time),
                               degrees:
                                   "${vm.foreCastModel?.forecast?.forecastday?.first.hour?[index].tempC?.toInt() ?? "-"}",
-                              imageAddress: vm.imageAddress[index],
+                              imageAddress: _weatherType.getIconAddress(_weatherType.getEnumType(vm.foreCastModel?.forecast?.forecastday?.first.hour?[index].condition?.text)),
                             );
                           },
                           separatorBuilder: (context, index) {
@@ -100,7 +104,8 @@ class _WeatherPageState extends BaseStatefulState<WeatherPage> {
                           return WeeklyWeather(
                             day: Extensions.getDayDate(vm.foreCastModel?.forecast?.forecastday?[index].date),
                             degrees: "${vm.foreCastModel?.forecast?.forecastday?[index].day?.maxtempC?.toInt() ?? "-"}",
-                            imageAddress: vm.imagesAddress2[index],
+                            imageAddress: _weatherType.getIconAddress(_weatherType.getEnumType(vm.foreCastModel?.forecast?.forecastday?[index].day?.condition?.text)),
+                            //imageAddress: vm.foreCastModel?.forecast?.forecastday?[index].day?.condition?.icon,
                           );
                         },
                       ),

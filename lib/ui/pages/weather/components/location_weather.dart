@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 class LocationWeather extends StatefulWidget {
   final String? location;
   final String? degrees;
+  final String? imageAddress;
 
   const LocationWeather({
     super.key,
     required this.location,
     required this.degrees,
+    this.imageAddress,
   });
 
   @override
@@ -22,8 +24,8 @@ class _LocationWeatherState extends State<LocationWeather> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(
-          "images/ic_home_inactive.png",
-          width: 20,
+          widget.imageAddress ?? "images/ic_home_active.png",
+          width: 40,
         ),
         Text(
           widget.location ?? "-",
