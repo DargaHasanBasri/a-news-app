@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../base/base_stateful_state.dart';
 import '../../../utils/custom_colors.dart';
+import '../../widgets/dialogs/settings_popup.dart';
 import 'settings_view_model.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -64,15 +65,15 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  /*
+
                                   showDialog(
                                     context: context,
                                     barrierDismissible: true,
                                     builder: (BuildContext context) {
-                                      return
+                                      return const SettingsPopup();
                                     },
                                   );
-                                   */
+
                                 },
                                 child: _buildTitleContent("Dili Değiştir", "Türkçe"),
                               ),
