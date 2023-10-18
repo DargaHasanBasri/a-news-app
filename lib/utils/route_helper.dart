@@ -1,3 +1,4 @@
+import 'package:a_news_app/ui/pages/settings/settings_provider.dart';
 import 'package:a_news_app/ui/pages/splash/splash_provider.dart';
 import 'package:flutter/material.dart';
 
@@ -27,6 +28,7 @@ class RouteHelper {
   static const String bottomNavigation = 'BottomNavigationBarProvider';
   static const String errorNullNavigation = 'ErrorNullNavigationProvider';
   static const String weather = 'WeatherProvider';
+  static const String settings = 'SettingsProvider';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -55,6 +57,8 @@ class RouteHelper {
         case RouteHelper.weather:
           ForeCastResponseModel foreCastModel = settings.arguments as ForeCastResponseModel;
         return MaterialPageRoute(builder: (context) => WeatherProvider(foreCastModel));
+      case RouteHelper.settings:
+        return MaterialPageRoute(builder: (context) => const SettingsProvider());
       default:
         return MaterialPageRoute(
           builder: (context) => Scaffold(

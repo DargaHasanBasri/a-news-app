@@ -278,62 +278,73 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          DrawerHeader(
-            margin: EdgeInsets.zero,
-            child: Column(
+          const SizedBox(height: 60),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              children: [
+                GestureDetector(
+                  onTap: () {},
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.red,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Image.asset(
+                            "images/ic_arrow_right.png",
+                            color: CustomColors.white,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Text(
+                        "Giriş Yap",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: CustomColors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const Spacer(),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: () => navigationService.navigateTo(RouteHelper.settings),
+                      child: Ink(
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Image.asset(
+                            "images/ic_settings.png",
+                            width: 20,
+                            height: 20,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 30),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () {},
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.red,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Image.asset(
-                                "images/ic_arrow_right.png",
-                                color: CustomColors.white,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 10),
-                          Text(
-                            "Giriş Yap",
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: CustomColors.black,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Spacer(),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Image.asset(
-                        "images/ic_settings.png",
-                        width: 20,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 30),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _currencyValue(),
-                    _locationWeather(),
-                  ],
-                ),
+                _currencyValue(),
+                _locationWeather(),
               ],
             ),
           ),
@@ -368,7 +379,7 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
             "Çeyrek Altın",
             style: TextStyle(
               fontSize: 12,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w700,
               color: CustomColors.black,
             ),
           ),
@@ -425,7 +436,7 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
                   Text(
                     vm.foreCastHourlyWeatherResponseNotifier.value?.location?.name?.toUpperCase() ?? "-",
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 12,
                       fontWeight: FontWeight.w700,
                       color: CustomColors.black,
                     ),
@@ -435,6 +446,15 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Image.asset(
+                        _weatherType.getIconAddress(
+                            _weatherType
+                                .getEnumType(vm.foreCastHourlyWeatherResponseNotifier.value?.current?.condition?.text),
+                            vm.foreCastHourlyWeatherResponseNotifier.value?.location?.localtime),
+                        height: 26,
+                        width: 26,
+                      ),
+                      const SizedBox(width: 6),
                       Text(
                         vm.foreCastHourlyWeatherResponseNotifier.value?.current?.tempC?.toInt().toString() ?? "-",
                         style: TextStyle(
@@ -450,14 +470,6 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
                           fontWeight: FontWeight.w700,
                           color: CustomColors.black,
                         ),
-                      ),
-                      Image.asset(
-                        _weatherType.getIconAddress(
-                            _weatherType
-                                .getEnumType(vm.foreCastHourlyWeatherResponseNotifier.value?.current?.condition?.text),
-                            vm.foreCastHourlyWeatherResponseNotifier.value?.location?.localtime),
-                        height: 26,
-                        width: 26,
                       ),
                     ],
                   ),
