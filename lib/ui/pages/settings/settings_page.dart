@@ -1,5 +1,7 @@
 import 'package:a_news_app/ui/pages/settings/components/settings_item.dart';
+import 'package:a_news_app/ui/widgets/dialogs/settings_content_letter_size_popup.dart';
 import 'package:a_news_app/ui/widgets/dialogs/settings_country_popup.dart';
+import 'package:a_news_app/ui/widgets/dialogs/settings_night_mode_popup.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../base/base_stateful_state.dart';
@@ -50,10 +52,11 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                       ),
                       const SizedBox(height: 10),
                       SettingsItem(
-                        onPress: () {},
+                        onPress: () => showLanguagePopup(
+                          const SettingsNightModePopup(),
+                        ),
                         title: "Gece Modu",
-                        iconAddress: "images/ic_home_active.png",
-                        iconColor: Colors.red,
+                        iconAddress: "images/ic_night_mode.png",
                       ),
                       const SizedBox(height: 80),
                       Container(
@@ -93,7 +96,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                                   title: "İçerik Harf Boyutu",
                                   subTitle: "Normal",
                                   onPress: () => showLanguagePopup(
-                                    const SettingsLanguagePopup(),
+                                    const SettingsContentLetterSizePopup(),
                                   ),
                                 ),
                               ),

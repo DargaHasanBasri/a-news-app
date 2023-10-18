@@ -54,6 +54,7 @@ class _SettingsCountryPopupState extends BaseStatefulState<SettingsCountryPopup>
                             isSelected: isSelect.value == item,
                             onSelected: () {
                               isSelect.value = item;
+                              navigationService.popIfBackStackNotEmpty();
                             },
                           ),
                         ),
@@ -63,31 +64,34 @@ class _SettingsCountryPopupState extends BaseStatefulState<SettingsCountryPopup>
                   );
                 }),
             const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-              child: Row(
-                children: [
-                  const Text(""),
-                  const Spacer(),
-                  ClipRRect(
+            Row(
+              children: [
+                const SizedBox(),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: ClipRRect(
                     borderRadius: BorderRadius.circular(4),
                     child: Material(
                       color: Colors.transparent,
                       child: InkWell(
                         onTap: () => navigationService.popIfBackStackNotEmpty(),
                         child: Ink(
+                          height: 40,
                           decoration: BoxDecoration(
                             color: Colors.transparent,
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(
-                              "İPTAL",
-                              style: TextStyle(
-                                color: Colors.red,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
+                            padding: EdgeInsets.symmetric(horizontal: 14),
+                            child: Center(
+                              child: Text(
+                                "İPTAL",
+                                style: TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
                           ),
@@ -95,9 +99,10 @@ class _SettingsCountryPopupState extends BaseStatefulState<SettingsCountryPopup>
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
+            const SizedBox(height: 20),
           ],
         ),
       ),
