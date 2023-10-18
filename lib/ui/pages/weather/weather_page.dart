@@ -41,26 +41,26 @@ class _WeatherPageState extends BaseStatefulState<WeatherPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                child: _buildAppBar(),
-              ),
-              Expanded(
-                child: SingleChildScrollView(
-                  controller: _pageScrollController,
-                  physics: const BouncingScrollPhysics(),
+        child: Column(
+          children: [
+            _buildAppBar(),
+            Expanded(
+              child: SingleChildScrollView(
+                controller: _pageScrollController,
+                physics: const BouncingScrollPhysics(),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Center(
                         child: LocationWeather(
-                          location: 'Samsun',
+                          location: vm.foreCastModel?.location?.name?.toUpperCase() ?? "-",
                           degrees: vm.foreCastModel?.current?.tempC?.toInt().toString() ?? "-",
-                          imageAddress: _weatherType.getIconAddress(_weatherType.getEnumType(vm.foreCastModel?.current?.condition?.text)),
+                          imageAddress: _weatherType.getIconAddress(
+                            _weatherType.getEnumType(vm.foreCastModel?.current?.condition?.text),
+                            vm.foreCastModel?.location?.localtime,
+                          ),
                         ),
                       ),
                       const SizedBox(height: 20),
@@ -77,7 +77,11 @@ class _WeatherPageState extends BaseStatefulState<WeatherPage> {
                                   vm.foreCastModel?.forecast?.forecastday?.first.hour?[index].time),
                               degrees:
                                   "${vm.foreCastModel?.forecast?.forecastday?.first.hour?[index].tempC?.toInt() ?? "-"}",
-                              imageAddress: _weatherType.getIconAddress(_weatherType.getEnumType(vm.foreCastModel?.forecast?.forecastday?.first.hour?[index].condition?.text)),
+                              imageAddress: _weatherType.getIconAddress(
+                                _weatherType.getEnumType(
+                                    vm.foreCastModel?.forecast?.forecastday?.first.hour?[index].condition?.text),
+                                vm.foreCastModel?.forecast?.forecastday?.first.hour?[index].time,
+                              ),
                             );
                           },
                           separatorBuilder: (context, index) {
@@ -104,8 +108,11 @@ class _WeatherPageState extends BaseStatefulState<WeatherPage> {
                           return WeeklyWeather(
                             day: Extensions.getDayDate(vm.foreCastModel?.forecast?.forecastday?[index].date),
                             degrees: "${vm.foreCastModel?.forecast?.forecastday?[index].day?.maxtempC?.toInt() ?? "-"}",
-                            imageAddress: _weatherType.getIconAddress(_weatherType.getEnumType(vm.foreCastModel?.forecast?.forecastday?[index].day?.condition?.text)),
-                            //imageAddress: vm.foreCastModel?.forecast?.forecastday?[index].day?.condition?.icon,
+                            imageAddress: _weatherType.getIconAddress(
+                              _weatherType
+                                  .getEnumType(vm.foreCastModel?.forecast?.forecastday?[index].day?.condition?.text),
+                              "",
+                            ),
                           );
                         },
                       ),
@@ -113,54 +120,63 @@ class _WeatherPageState extends BaseStatefulState<WeatherPage> {
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
 
   Widget _buildAppBar() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: Material(
-            child: InkWell(
-              onTap: () => navigationService.popIfBackStackNotEmpty(),
-              child: Ink(
-                child: Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Image.asset(
-                    "images/ic_arrow_back.png",
-                    height: 20,
-                    width: 20,
+    return Container(
+      color: Colors.white,
+      width: double.infinity,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 6),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  onTap: () => navigationService.popIfBackStackNotEmpty(),
+                  child: Ink(
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Image.asset(
+                        "images/ic_arrow_back.png",
+                        height: 20,
+                        width: 20,
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: Material(
-            child: InkWell(
-              onTap: () {},
-              child: Ink(
-                child: Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Image.asset(
-                    "images/ic_settings.png",
-                    width: 20,
-                    height: 20,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  onTap: () {},
+                  child: Ink(
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Image.asset(
+                        "images/ic_settings.png",
+                        width: 20,
+                        height: 20,
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
+          ],
         ),
-      ],
+      ),
     );
   }
 
