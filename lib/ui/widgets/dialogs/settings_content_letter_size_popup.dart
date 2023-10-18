@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 import '../../../base/base_stateful_state.dart';
 import '../../../utils/custom_colors.dart';
 
-class SettingsPopup extends StatefulWidget {
-  const SettingsPopup({super.key});
+class SettingsContentLetterSizePopup extends StatefulWidget {
+  const SettingsContentLetterSizePopup({super.key});
 
   @override
-  State<SettingsPopup> createState() => _SettingsPopupState();
+  State<SettingsContentLetterSizePopup> createState() => _SettingsContentLetterSizePopupState();
 }
 
-List<String> radioItem = ["English", "Türkçe", "Deutsch", "Français", "Espanol"];
-ValueNotifier<String> isSelect = ValueNotifier("Türkçe");
+List<String> radioItem = ["Küçük", "Normal", "Büyük", "Çok Büyük", "En Büyük"];
+ValueNotifier<String> isSelect = ValueNotifier("Normal");
 
-class _SettingsPopupState extends BaseStatefulState<SettingsPopup> {
+class _SettingsContentLetterSizePopupState extends BaseStatefulState<SettingsContentLetterSizePopup> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -31,7 +31,7 @@ class _SettingsPopupState extends BaseStatefulState<SettingsPopup> {
           children: [
             const SizedBox(height: 20),
             Text(
-              "Dili Değiştir",
+              "İçerik Harf Boyutu",
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
@@ -48,16 +48,16 @@ class _SettingsPopupState extends BaseStatefulState<SettingsPopup> {
                       ...radioItem
                           .map(
                             (item) => Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: CustomRadioButton(
-                                title: item,
-                                isSelected: isSelect.value == item,
-                                onSelected: () {
-                                  isSelect.value = item;
-                                },
-                              ),
-                            ),
-                          )
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: CustomRadioButton(
+                            title: item,
+                            isSelected: isSelect.value == item,
+                            onSelected: () {
+                              isSelect.value = item;
+                            },
+                          ),
+                        ),
+                      )
                           .toList(),
                     ],
                   );
