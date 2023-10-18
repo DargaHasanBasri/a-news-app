@@ -1,9 +1,10 @@
 import 'package:a_news_app/ui/pages/settings/components/settings_item.dart';
+import 'package:a_news_app/ui/widgets/dialogs/settings_country_popup.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../base/base_stateful_state.dart';
 import '../../../utils/custom_colors.dart';
-import '../../widgets/dialogs/settings_popup.dart';
+import '../../widgets/dialogs/settings_language_popup.dart';
 import 'components/build_title_content.dart';
 import 'settings_view_model.dart';
 
@@ -70,7 +71,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                                   title: "Dili Değiştir",
                                   subTitle: "Türkçe",
                                   onPress: () => showLanguagePopup(
-                                    const SettingsPopup(),
+                                    const SettingsLanguagePopup(),
                                   ),
                                 ),
                               ),
@@ -81,7 +82,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                                   title: "Ülkeyi Değiştir",
                                   subTitle: "Türkiye",
                                   onPress: () => showLanguagePopup(
-                                    const SettingsPopup(),
+                                    const SettingsCountryPopup(),
                                   ),
                                 ),
                               ),
@@ -92,7 +93,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                                   title: "İçerik Harf Boyutu",
                                   subTitle: "Normal",
                                   onPress: () => showLanguagePopup(
-                                    const SettingsPopup(),
+                                    const SettingsLanguagePopup(),
                                   ),
                                 ),
                               ),
@@ -116,7 +117,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                                   title: "Puanla",
                                   subTitle: "",
                                   onPress: () => showLanguagePopup(
-                                    const SettingsPopup(),
+                                    const SettingsLanguagePopup(),
                                   ),
                                 ),
                               ),
@@ -127,7 +128,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                                   title: "Yorum Gönder",
                                   subTitle: "",
                                   onPress: () => showLanguagePopup(
-                                    const SettingsPopup(),
+                                    const SettingsLanguagePopup(),
                                   ),
                                 ),
                               ),
@@ -138,7 +139,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                                   title: "A-News-App's paylaş",
                                   subTitle: "",
                                   onPress: () => showLanguagePopup(
-                                    const SettingsPopup(),
+                                    const SettingsLanguagePopup(),
                                   ),
                                 ),
                               ),
@@ -162,7 +163,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                                   title: "Kullanım Koşulları",
                                   subTitle: "",
                                   onPress: () => showLanguagePopup(
-                                    const SettingsPopup(),
+                                    const SettingsLanguagePopup(),
                                   ),
                                 ),
                               ),
@@ -173,7 +174,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                                   title: "A-News-App Hakkında",
                                   subTitle: "",
                                   onPress: () => showLanguagePopup(
-                                    const SettingsPopup(),
+                                    const SettingsLanguagePopup(),
                                   ),
                                 ),
                               ),
