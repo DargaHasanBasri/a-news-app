@@ -1,4 +1,5 @@
 import 'package:a_news_app/base/base_stateful_state.dart';
+import 'package:a_news_app/models/response/fore_cast_response_model.dart';
 import 'package:a_news_app/ui/pages/discover/discover_provider.dart';
 import 'package:a_news_app/ui/pages/home/home_provider.dart';
 import 'package:a_news_app/ui/pages/notifications/notifications_provider.dart';
@@ -7,6 +8,7 @@ import 'package:a_news_app/utils/custom_colors.dart';
 import 'package:a_news_app/utils/route_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../../models/enums/weather_enum.dart';
 import 'bottom_navigation_bar_view_model.dart';
 import 'components/custom_categories.dart';
 
@@ -21,6 +23,7 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
   late final BottomNavigationBarViewModel vm;
   late PageController pageController;
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+  late final WeatherType _weatherType;
 
   final List<Widget> pages = [
     const HomeProvider(),
@@ -34,6 +37,7 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
     super.initState();
     vm = Provider.of<BottomNavigationBarViewModel>(context, listen: false);
     pageController = PageController(initialPage: 0);
+    _weatherType = WeatherType();
     listeners();
     //vm.fetchNosyCurrency("ceyrek-altin");
   }
@@ -326,106 +330,8 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Çeyrek Altın",
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              color: CustomColors.black,
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                          ValueListenableBuilder(
-                              valueListenable: vm.currencyNosyResponseNotifier,
-                              builder: (_, __, ___) {
-                                return Row(
-                                  children: [
-                                    (vm.currencyNosyResponseNotifier.value?.data?.first.changeRate ?? 0) > 0
-                                        ? Image.asset(
-                                            "images/ic_caret_arrow.png",
-                                            width: 20,
-                                          )
-                                        : RotatedBox(
-                                            quarterTurns: 2,
-                                            child: Image.asset(
-                                              "images/ic_caret_arrow.png",
-                                              width: 20,
-                                              color: Colors.red,
-                                            ),
-                                          ),
-                                    const SizedBox(width: 10),
-                                    Text(
-                                      "${vm.currencyNosyResponseNotifier.value?.data?.first.selling}" ?? "-",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
-                                        color: CustomColors.black,
-                                      ),
-                                    ),
-                                  ],
-                                );
-                              }),
-                        ],
-                      ),
-                    ),
-                    ValueListenableBuilder(
-                        valueListenable: vm.foreCastHourlyWeatherResponseNotifier,
-                        builder: (_, __, ___) {
-                          return Padding(
-                            padding: const EdgeInsets.only(right: 10),
-                            child: GestureDetector(
-                              onTap: () => navigationService.navigateTo(
-                                RouteHelper.weather,
-                                arguments: vm.foreCastHourlyWeatherResponseNotifier.value,
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    vm.foreCastHourlyWeatherResponseNotifier.value?.location?.name?.toUpperCase() ??
-                                        "-",
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                      color: CustomColors.black,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        vm.foreCastHourlyWeatherResponseNotifier.value?.current?.tempC
-                                                ?.toInt()
-                                                .toString() ??
-                                            "-",
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                          color: CustomColors.black,
-                                        ),
-                                      ),
-                                      Text(
-                                        "°",
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w700,
-                                          color: CustomColors.black,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        }),
+                    _currencyValue(),
+                    _locationWeather(),
                   ],
                 ),
               ],
@@ -450,6 +356,116 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
         ],
       ),
     );
+  }
+
+  Widget _currencyValue() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Çeyrek Altın",
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+              color: CustomColors.black,
+            ),
+          ),
+          const SizedBox(height: 10),
+          ValueListenableBuilder(
+              valueListenable: vm.currencyNosyResponseNotifier,
+              builder: (_, __, ___) {
+                return Row(
+                  children: [
+                    (vm.currencyNosyResponseNotifier.value?.data?.first.changeRate ?? 0) > 0
+                        ? Image.asset(
+                            "images/ic_caret_arrow.png",
+                            width: 20,
+                          )
+                        : RotatedBox(
+                            quarterTurns: 2,
+                            child: Image.asset(
+                              "images/ic_caret_arrow.png",
+                              width: 20,
+                              color: Colors.red,
+                            ),
+                          ),
+                    const SizedBox(width: 10),
+                    Text(
+                      "${vm.currencyNosyResponseNotifier.value?.data?.first.selling}" ?? "-",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: CustomColors.black,
+                      ),
+                    ),
+                  ],
+                );
+              }),
+        ],
+      ),
+    );
+  }
+
+  Widget _locationWeather() {
+    return ValueListenableBuilder(
+        valueListenable: vm.foreCastHourlyWeatherResponseNotifier,
+        builder: (_, __, ___) {
+          return Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: GestureDetector(
+              onTap: () => navigationService.navigateTo(
+                RouteHelper.weather,
+                arguments: vm.foreCastHourlyWeatherResponseNotifier.value,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    vm.foreCastHourlyWeatherResponseNotifier.value?.location?.name?.toUpperCase() ?? "-",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: CustomColors.black,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        vm.foreCastHourlyWeatherResponseNotifier.value?.current?.tempC?.toInt().toString() ?? "-",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: CustomColors.black,
+                        ),
+                      ),
+                      Text(
+                        "°",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                          color: CustomColors.black,
+                        ),
+                      ),
+                      Image.asset(
+                        _weatherType.getIconAddress(
+                            _weatherType
+                                .getEnumType(vm.foreCastHourlyWeatherResponseNotifier.value?.current?.condition?.text),
+                            vm.foreCastHourlyWeatherResponseNotifier.value?.location?.localtime),
+                        height: 26,
+                        width: 26,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
   }
 
   listeners() {

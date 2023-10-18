@@ -32,12 +32,12 @@ class _MyAppState extends State<MyApp> {
       title: 'aNewsApp',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: Colors.black,
+        primaryColor: Colors.white,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       navigatorKey: locator<NavigationService>().baseNavigatorKey,
       onGenerateRoute: RouteHelper.generateRoute,
-      initialRoute: RouteHelper.splash,
+      initialRoute: RouteHelper.bottomNavigation,
     );
   }
 }

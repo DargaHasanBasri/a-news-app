@@ -1,7 +1,16 @@
-import 'package:intl/date_symbol_data_file.dart';
 import 'package:intl/intl.dart';
 
 class Extensions {
+
+  static DateTime getDateTime(String? date) {
+    if (date == "" || date == null) {
+      return DateTime.now();
+    } else {
+      DateTime dateTime = DateTime.parse(date);
+      return dateTime;
+    }
+  }
+
   static String getHourDate(String? date) {
     if (date == "" || date == null) {
       return "";
