@@ -11,6 +11,9 @@ class SettingsPopup extends StatefulWidget {
   State<SettingsPopup> createState() => _SettingsPopupState();
 }
 
+List<String> radioItem = ["English", "Türkçe", "Deutsch", "Français", "Espanol"];
+ValueNotifier<String> isSelect = ValueNotifier("Türkçe");
+
 class _SettingsPopupState extends BaseStatefulState<SettingsPopup> {
   @override
   Widget build(BuildContext context) {
@@ -36,36 +39,65 @@ class _SettingsPopupState extends BaseStatefulState<SettingsPopup> {
               ),
             ),
             const SizedBox(height: 20),
-            CustomRadioButton(
-              isSelected: true,
-              title: "English",
-              onSelected: () {},
-            ),
-            const SizedBox(height: 20),
-            CustomRadioButton(
-              isSelected: true,
-              title: "Türkçe",
-              onSelected: () {},
-            ),
-            const SizedBox(height: 20),
-            CustomRadioButton(
-              isSelected: true,
-              title: "Deutsch",
-              onSelected: () {},
-            ),
-            const SizedBox(height: 20),
-            CustomRadioButton(
-              isSelected: true,
-              title: "Français",
-              onSelected: () {},
-            ),
-            const SizedBox(height: 20),
-            CustomRadioButton(
-              isSelected: true,
-              title: "Espanol",
-              onSelected: () {},
-            ),
+            ValueListenableBuilder(
+                valueListenable: isSelect,
+                builder: (_, __, ___) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ...radioItem
+                          .map(
+                            (item) => Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              child: CustomRadioButton(
+                                title: item,
+                                isSelected: isSelect.value == item,
+                                onSelected: () {
+                                  isSelect.value = item;
+                                },
+                              ),
+                            ),
+                          )
+                          .toList(),
+                    ],
+                  );
+                }),
             const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              child: Row(
+                children: [
+                  const Text(""),
+                  const Spacer(),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(4),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        onTap: () => navigationService.popIfBackStackNotEmpty(),
+                        child: Ink(
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
+                              "İPTAL",
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

@@ -36,7 +36,9 @@ class _CustomRadioButtonState extends BaseStatefulState<CustomRadioButton> {
                 height: 22,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: const BorderRadius.all(Radius.circular(35),),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(35),
+                  ),
                   border: Border.all(
                     color: Colors.red,
                     width: 2,
