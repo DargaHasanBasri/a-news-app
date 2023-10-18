@@ -63,7 +63,17 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                           child: Column(
                             children: [
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  /*
+                                  showDialog(
+                                    context: context,
+                                    barrierDismissible: true,
+                                    builder: (BuildContext context) {
+                                      return
+                                    },
+                                  );
+                                   */
+                                },
                                 child: _buildTitleContent("Dili Değiştir", "Türkçe"),
                               ),
                               const SizedBox(height: 50),
@@ -136,7 +146,6 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                           ),
                         ),
                       ),
-
                       const SizedBox(height: 50),
                     ],
                   ),
