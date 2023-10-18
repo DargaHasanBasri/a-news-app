@@ -1,9 +1,10 @@
-import 'package:a_news_app/ui/pages/search/components/settings_item.dart';
+import 'package:a_news_app/ui/pages/settings/components/settings_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../base/base_stateful_state.dart';
 import '../../../utils/custom_colors.dart';
 import '../../widgets/dialogs/settings_popup.dart';
+import 'components/build_title_content.dart';
 import 'settings_view_model.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -60,32 +61,40 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+                          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
                           child: Column(
                             children: [
-                              GestureDetector(
-                                onTap: () {
-
-                                  showDialog(
-                                    context: context,
-                                    barrierDismissible: true,
-                                    builder: (BuildContext context) {
-                                      return const SettingsPopup();
-                                    },
-                                  );
-
-                                },
-                                child: _buildTitleContent("Dili Değiştir", "Türkçe"),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: BuildTitleContent(
+                                  title: "Dili Değiştir",
+                                  subTitle: "Türkçe",
+                                  onPress: () => showLanguagePopup(
+                                    const SettingsPopup(),
+                                  ),
+                                ),
                               ),
-                              const SizedBox(height: 50),
-                              GestureDetector(
-                                onTap: () {},
-                                child: _buildTitleContent("Ülkeyi Değiştir", "Türkiye"),
+                              const SizedBox(height: 30),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: BuildTitleContent(
+                                  title: "Ülkeyi Değiştir",
+                                  subTitle: "Türkiye",
+                                  onPress: () => showLanguagePopup(
+                                    const SettingsPopup(),
+                                  ),
+                                ),
                               ),
-                              const SizedBox(height: 50),
-                              GestureDetector(
-                                onTap: () {},
-                                child: _buildTitleContent("İçerik Harf Boyutu", "Normal"),
+                              const SizedBox(height: 30),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: BuildTitleContent(
+                                  title: "İçerik Harf Boyutu",
+                                  subTitle: "Normal",
+                                  onPress: () => showLanguagePopup(
+                                    const SettingsPopup(),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -98,22 +107,40 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+                          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
                           child: Column(
                             children: [
-                              GestureDetector(
-                                onTap: () {},
-                                child: _buildTitleContent("Puanla", ""),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: BuildTitleContent(
+                                  title: "Puanla",
+                                  subTitle: "",
+                                  onPress: () => showLanguagePopup(
+                                    const SettingsPopup(),
+                                  ),
+                                ),
                               ),
-                              const SizedBox(height: 50),
-                              GestureDetector(
-                                onTap: () {},
-                                child: _buildTitleContent("Yorum Gönder", ""),
+                              const SizedBox(height: 30),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: BuildTitleContent(
+                                  title: "Yorum Gönder",
+                                  subTitle: "",
+                                  onPress: () => showLanguagePopup(
+                                    const SettingsPopup(),
+                                  ),
+                                ),
                               ),
-                              const SizedBox(height: 50),
-                              GestureDetector(
-                                onTap: () {},
-                                child: _buildTitleContent("A-News-App's paylaş", ""),
+                              const SizedBox(height: 30),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: BuildTitleContent(
+                                  title: "A-News-App's paylaş",
+                                  subTitle: "",
+                                  onPress: () => showLanguagePopup(
+                                    const SettingsPopup(),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -126,22 +153,38 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+                          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
                           child: Column(
                             children: [
-                              GestureDetector(
-                                onTap: () {},
-                                child: _buildTitleContent("Kullanım Koşulları", ""),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: BuildTitleContent(
+                                  title: "Kullanım Koşulları",
+                                  subTitle: "",
+                                  onPress: () => showLanguagePopup(
+                                    const SettingsPopup(),
+                                  ),
+                                ),
                               ),
-                              const SizedBox(height: 50),
-                              GestureDetector(
-                                onTap: () {},
-                                child: _buildTitleContent("A-News-App Hakkında", ""),
+                              const SizedBox(height: 30),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: BuildTitleContent(
+                                  title: "A-News-App Hakkında",
+                                  subTitle: "",
+                                  onPress: () => showLanguagePopup(
+                                    const SettingsPopup(),
+                                  ),
+                                ),
                               ),
-                              const SizedBox(height: 50),
-                              GestureDetector(
-                                onTap: () {},
-                                child: _buildTitleContent("Version", "1.0.0"),
+                              const SizedBox(height: 30),
+                              const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: BuildTitleContent(
+                                  title: "Version",
+                                  subTitle: "1.0.0",
+                                  onPress: null,
+                                ),
                               ),
                             ],
                           ),
@@ -156,30 +199,6 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildTitleContent(String? title, String? subTitle) {
-    return Row(
-      children: [
-        Text(
-          title ?? "",
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w700,
-            color: CustomColors.black,
-          ),
-        ),
-        const Spacer(),
-        Text(
-          subTitle ?? "",
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w400,
-            color: CustomColors.black,
-          ),
-        ),
-      ],
     );
   }
 
@@ -225,6 +244,16 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
           ),
         ],
       ),
+    );
+  }
+
+  showLanguagePopup(var popup) {
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return popup;
+      },
     );
   }
 }
