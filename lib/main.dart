@@ -1,6 +1,7 @@
 import 'package:a_news_app/base/base_stateful_state.dart';
 import 'package:a_news_app/services/service_locator.dart';
 import 'package:a_news_app/theme_preferences.dart';
+import 'package:a_news_app/utils/custom_colors.dart';
 import 'package:a_news_app/utils/route_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -39,9 +40,11 @@ class _MyAppState extends BaseStatefulState<MyApp> {
           title: 'aNewsApp',
           debugShowCheckedModeBanner: false,
           theme: ThemeData.light().copyWith(
+            primaryColor: CustomColors.white,
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
           darkTheme: ThemeData.dark().copyWith(
+            primaryColor: CustomColors.black,
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
           themeMode: provider.themeMode,

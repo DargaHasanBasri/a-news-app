@@ -41,7 +41,8 @@ class _HourlyWeatherState extends BaseStatefulState<HourlyWeather> {
             const SizedBox(height: 12),
             Image.asset(
               widget.imageAddress ?? "images/ic_home_inactive.png",
-              width: 20,
+              width: 26,
+              height: 26,
             ),
             const Spacer(),
             Row(

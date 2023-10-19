@@ -37,7 +37,7 @@ class _SettingsNightModePopupState extends BaseStatefulState<SettingsNightModePo
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
-                color: CustomColors.black,
+                color: Theme.of(context).textTheme.titleMedium?.color,
               ),
             ),
             const SizedBox(height: 20),
