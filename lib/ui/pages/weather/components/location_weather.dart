@@ -1,4 +1,3 @@
-import 'package:a_news_app/utils/custom_colors.dart';
 import 'package:flutter/material.dart';
 
 class LocationWeather extends StatefulWidget {
@@ -28,35 +27,39 @@ class _LocationWeatherState extends State<LocationWeather> {
           width: 40,
           height: 40,
         ),
+        const SizedBox(height: 10),
         Text(
           widget.location ?? "-",
           style: TextStyle(
-            fontSize: 16,
+            fontSize: 12,
             fontWeight: FontWeight.w700,
-            color: CustomColors.black,
+            color: Theme.of(context).textTheme.titleMedium?.color,
           ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "${widget.degrees}" ?? "0°",
-              style: TextStyle(
-                fontSize: 66,
-                fontWeight: FontWeight.w700,
-                color: CustomColors.black,
+        Padding(
+          padding: const EdgeInsets.only(left: 12),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "${widget.degrees}" ?? "0°",
+                style: TextStyle(
+                  fontSize: 60,
+                  fontWeight: FontWeight.w700,
+                  color: Theme.of(context).textTheme.titleMedium?.color,
+                ),
               ),
-            ),
-            Text(
-              "°",
-              style: TextStyle(
-                fontSize: 50,
-                fontWeight: FontWeight.w700,
-                color: CustomColors.black,
+              Text(
+                "°",
+                style: TextStyle(
+                  fontSize: 50,
+                  fontWeight: FontWeight.w700,
+                  color: Theme.of(context).textTheme.titleMedium?.color,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ],
     );
