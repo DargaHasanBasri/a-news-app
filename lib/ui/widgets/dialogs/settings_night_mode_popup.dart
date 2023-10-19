@@ -1,5 +1,7 @@
+import 'package:a_news_app/theme_preferences.dart';
 import 'package:a_news_app/ui/widgets/custom_widgets/custom_radio_button.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../base/base_stateful_state.dart';
 import '../../../utils/custom_colors.dart';
@@ -39,30 +41,35 @@ class _SettingsNightModePopupState extends BaseStatefulState<SettingsNightModePo
               ),
             ),
             const SizedBox(height: 20),
-            ValueListenableBuilder(
-                valueListenable: isSelect,
-                builder: (_, __, ___) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ...radioItem
-                          .map(
-                            (item) => Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: CustomRadioButton(
-                            title: item,
-                            isSelected: isSelect.value == item,
-                            onSelected: () {
-                              isSelect.value = item;
-                              navigationService.popIfBackStackNotEmpty();
-                            },
-                          ),
-                        ),
-                      )
-                          .toList(),
-                    ],
-                  );
-                }),
+            Consumer<ThemePreferences>(
+              builder: (context, provider, child) {
+                return ValueListenableBuilder(
+                    valueListenable: isSelect,
+                    builder: (_, __, ___) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ...radioItem
+                              .map(
+                                (item) => Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: 10),
+                                  child: CustomRadioButton(
+                                    title: item,
+                                    isSelected: isSelect.value == item,
+                                    onSelected: () {
+                                      isSelect.value = item;
+                                      navigationService.popIfBackStackNotEmpty();
+                                      provider.changeTheme(isSelect.value ?? "Otomatik");
+                                    },
+                                  ),
+                                ),
+                              )
+                              .toList(),
+                        ],
+                      );
+                    });
+              },
+            ),
             const SizedBox(height: 10),
             Row(
               children: [
