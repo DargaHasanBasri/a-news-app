@@ -23,19 +23,21 @@ class _HourlyWeatherState extends BaseStatefulState<HourlyWeather> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(6),
+        color: Theme.of(context).primaryColor,
+        borderRadius: BorderRadius.circular(4),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            const SizedBox(height: 20),
             Text(
               widget.date ?? "00:00",
               style: TextStyle(
                 fontSize: 10,
                 fontWeight: FontWeight.w500,
-                color: CustomColors.black,
+                color: Theme.of(context).textTheme.titleMedium?.color,
               ),
             ),
             const SizedBox(height: 12),
@@ -54,7 +56,7 @@ class _HourlyWeatherState extends BaseStatefulState<HourlyWeather> {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    color: CustomColors.black,
+                    color: Theme.of(context).textTheme.titleMedium?.color,
                   ),
                 ),
                 Text(
@@ -62,11 +64,12 @@ class _HourlyWeatherState extends BaseStatefulState<HourlyWeather> {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
-                    color: CustomColors.black,
+                    color: Theme.of(context).textTheme.titleMedium?.color,
                   ),
                 ),
               ],
             ),
+            const SizedBox(height: 10),
           ],
         ),
       ),

@@ -53,6 +53,7 @@ class _WeatherPageState extends BaseStatefulState<WeatherPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      const SizedBox(height: 30),
                       Center(
                         child: LocationWeather(
                           location: vm.foreCastModel?.location?.name?.toUpperCase() ?? "-",
@@ -65,7 +66,7 @@ class _WeatherPageState extends BaseStatefulState<WeatherPage> {
                       ),
                       const SizedBox(height: 20),
                       SizedBox(
-                        height: 100,
+                        height: 110,
                         child: ListView.separated(
                           controller: _hourlyScrollController,
                           physics: const BouncingScrollPhysics(),
@@ -89,16 +90,16 @@ class _WeatherPageState extends BaseStatefulState<WeatherPage> {
                           },
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 50),
                       Text(
                         "HAFTALIK GÖRÜNÜM",
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 14,
                           fontWeight: FontWeight.w700,
-                          color: CustomColors.black,
+                          color: Theme.of(context).textTheme.titleMedium?.color,
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 10),
                       ListView.builder(
                         controller: _weeklyScrollController,
                         physics: const NeverScrollableScrollPhysics(),
@@ -129,7 +130,7 @@ class _WeatherPageState extends BaseStatefulState<WeatherPage> {
 
   Widget _buildAppBar() {
     return Container(
-      color: Colors.white,
+      color: Theme.of(context).primaryColor,
       width: double.infinity,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 6),
@@ -149,6 +150,7 @@ class _WeatherPageState extends BaseStatefulState<WeatherPage> {
                         "images/ic_arrow_back.png",
                         height: 20,
                         width: 20,
+                        color: Theme.of(context).textTheme.titleMedium?.color,
                       ),
                     ),
                   ),
@@ -168,6 +170,7 @@ class _WeatherPageState extends BaseStatefulState<WeatherPage> {
                         "images/ic_settings.png",
                         width: 20,
                         height: 20,
+                        color: Theme.of(context).textTheme.titleMedium?.color,
                       ),
                     ),
                   ),

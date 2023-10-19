@@ -31,9 +31,9 @@ class _WeeklyWeatherState extends BaseStatefulState<WeeklyWeather> {
             child: Text(
               widget.day ?? "Pazartesi",
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 14,
                 fontWeight: FontWeight.w600,
-                color: CustomColors.black,
+                color: Theme.of(context).textTheme.titleMedium?.color,
               ),
             ),
           ),
@@ -43,8 +43,8 @@ class _WeeklyWeatherState extends BaseStatefulState<WeeklyWeather> {
             children: [
               Image.asset(
                 widget.imageAddress ?? "images/ic_home_inactive.png",
-                height: 30,
-                width: 30,
+                height: 40,
+                width: 40,
               ),
               const SizedBox(width: 10),
               Row(
@@ -56,7 +56,7 @@ class _WeeklyWeatherState extends BaseStatefulState<WeeklyWeather> {
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
-                      color: CustomColors.black,
+                      color: Theme.of(context).textTheme.titleMedium?.color,
                     ),
                   ),
                   Text(
@@ -64,7 +64,7 @@ class _WeeklyWeatherState extends BaseStatefulState<WeeklyWeather> {
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
-                      color: CustomColors.black,
+                      color: Theme.of(context).textTheme.titleMedium?.color,
                     ),
                   ),
                 ],
