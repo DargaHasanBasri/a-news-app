@@ -26,6 +26,7 @@ class _LocationWeatherState extends State<LocationWeather> {
         Image.asset(
           widget.imageAddress ?? "images/ic_home_active.png",
           width: 40,
+          height: 40,
         ),
         Text(
           widget.location ?? "-",

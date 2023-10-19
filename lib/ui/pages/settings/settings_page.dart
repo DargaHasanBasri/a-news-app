@@ -61,7 +61,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                       const SizedBox(height: 80),
                       Container(
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(context).primaryColor,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Padding(
@@ -107,7 +107,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                       const SizedBox(height: 80),
                       Container(
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(context).primaryColor,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Padding(
@@ -153,7 +153,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                       const SizedBox(height: 80),
                       Container(
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(context).primaryColor,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Padding(
@@ -226,6 +226,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                         "images/ic_arrow_back.png",
                         height: 20,
                         width: 20,
+                        color: Theme.of(context).textTheme.titleMedium?.color,
                       ),
                     ),
                   ),
@@ -241,7 +242,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
-                  color: CustomColors.black,
+                  color: Theme.of(context).textTheme.titleMedium?.color,
                 ),
               ),
             ),

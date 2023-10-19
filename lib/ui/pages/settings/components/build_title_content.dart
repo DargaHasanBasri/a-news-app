@@ -30,7 +30,7 @@ class _BuildTitleContentState extends BaseStatefulState<BuildTitleContent> {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
-                color: CustomColors.black,
+                color: Theme.of(context).textTheme.titleMedium?.color,
               ),
             ),
             const Spacer(),
@@ -39,7 +39,7 @@ class _BuildTitleContentState extends BaseStatefulState<BuildTitleContent> {
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
-                color: CustomColors.black,
+                color: Theme.of(context).textTheme.titleMedium?.color,
               ),
             ),
           ],

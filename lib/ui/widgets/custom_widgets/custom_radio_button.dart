@@ -71,7 +71,7 @@ class _CustomRadioButtonState extends BaseStatefulState<CustomRadioButton> {
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w400,
-            color: CustomColors.black,
+            color: Theme.of(context).textTheme.titleMedium?.color,
           ),
         ),
       ],

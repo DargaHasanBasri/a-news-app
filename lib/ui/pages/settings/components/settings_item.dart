@@ -32,7 +32,7 @@ class _SettingsItemState extends State<SettingsItem> {
           onTap: () => widget.onPress.call(),
           child: Ink(
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Theme.of(context).primaryColor,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Padding(
@@ -54,7 +54,7 @@ class _SettingsItemState extends State<SettingsItem> {
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
-                          color: CustomColors.black,
+                          color: Theme.of(context).textTheme.titleMedium?.color,
                         ),
                       )
                     ],

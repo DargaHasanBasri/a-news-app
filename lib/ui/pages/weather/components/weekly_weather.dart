@@ -41,6 +41,12 @@ class _WeeklyWeatherState extends BaseStatefulState<WeeklyWeather> {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
+              Image.asset(
+                widget.imageAddress ?? "images/ic_home_inactive.png",
+                height: 30,
+                width: 30,
+              ),
+              const SizedBox(width: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,12 +68,6 @@ class _WeeklyWeatherState extends BaseStatefulState<WeeklyWeather> {
                     ),
                   ),
                 ],
-              ),
-              const SizedBox(width: 10),
-              Image.asset(
-                widget.imageAddress ?? "images/ic_home_inactive.png",
-                height: 20,
-                width: 20,
               ),
             ],
           ),
