@@ -34,15 +34,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends BaseStatefulState<MyApp> {
-
-  @override
-  void initState() {
-    super.initState();
-    BusHelper.eventBus.on<LanguageChangeEvent>().listen((event) {
-      setState(() {});
-    });
-
-  }
+  
   @override
   Widget build(BuildContext context) {
     return Consumer<ThemePreferences>(
