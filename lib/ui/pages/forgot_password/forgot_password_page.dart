@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../generated/l10n.dart';
 import '../../../utils/custom_colors.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
@@ -21,7 +22,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Forgot Password",
+              S.current.forgotPassword,
               style: TextStyle(
                 fontSize: 16,
                 color: CustomColors.black,

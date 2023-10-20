@@ -2,6 +2,7 @@ import 'package:a_news_app/ui/widgets/custom_widgets/custom_radio_button.dart';
 import 'package:flutter/material.dart';
 
 import '../../../base/base_stateful_state.dart';
+import '../../../generated/l10n.dart';
 import '../../../utils/custom_colors.dart';
 
 class SettingsContentLetterSizePopup extends StatefulWidget {
@@ -11,8 +12,14 @@ class SettingsContentLetterSizePopup extends StatefulWidget {
   State<SettingsContentLetterSizePopup> createState() => _SettingsContentLetterSizePopupState();
 }
 
-List<String> radioItem = ["Küçük", "Normal", "Büyük", "Çok Büyük", "En Büyük"];
-ValueNotifier<String> isSelect = ValueNotifier("Normal");
+List<String> radioItem = [
+  S.current.small,
+  S.current.normal,
+  S.current.big,
+  S.current.veryBig,
+  S.current.biggest,
+];
+ValueNotifier<String> isSelect = ValueNotifier(S.current.normal);
 
 class _SettingsContentLetterSizePopupState extends BaseStatefulState<SettingsContentLetterSizePopup> {
   @override
@@ -31,7 +38,7 @@ class _SettingsContentLetterSizePopupState extends BaseStatefulState<SettingsCon
           children: [
             const SizedBox(height: 20),
             Text(
-              "İçerik Harf Boyutu",
+              S.current.contentLetterSize,
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
@@ -48,17 +55,17 @@ class _SettingsContentLetterSizePopupState extends BaseStatefulState<SettingsCon
                       ...radioItem
                           .map(
                             (item) => Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: CustomRadioButton(
-                            title: item,
-                            isSelected: isSelect.value == item,
-                            onSelected: () {
-                              isSelect.value = item;
-                              navigationService.popIfBackStackNotEmpty();
-                            },
-                          ),
-                        ),
-                      )
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              child: CustomRadioButton(
+                                title: item,
+                                isSelected: isSelect.value == item,
+                                onSelected: () {
+                                  isSelect.value = item;
+                                  navigationService.popIfBackStackNotEmpty();
+                                },
+                              ),
+                            ),
+                          )
                           .toList(),
                     ],
                   );
@@ -82,12 +89,12 @@ class _SettingsContentLetterSizePopupState extends BaseStatefulState<SettingsCon
                             color: Colors.transparent,
                             borderRadius: BorderRadius.circular(4),
                           ),
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 14),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 14),
                             child: Center(
                               child: Text(
-                                "İPTAL",
-                                style: TextStyle(
+                                S.current.cancel,
+                                style: const TextStyle(
                                   color: Colors.red,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,

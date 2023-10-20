@@ -2,6 +2,7 @@ import 'package:a_news_app/base/base_stateful_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../generated/l10n.dart';
 import '../../../utils/custom_colors.dart';
 import 'discover_view_model.dart';
 
@@ -31,7 +32,7 @@ class _DiscoverPageState extends BaseStatefulState<DiscoverPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Discover",
+              S.current.discover,
               style: TextStyle(
                 fontSize: 16,
                 color: CustomColors.black,

@@ -5,7 +5,9 @@ import 'package:a_news_app/utils/custom_colors.dart';
 import 'package:a_news_app/utils/route_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'generated/l10n.dart';
 import 'services/navigation_service.dart';
 
 Future<void> main() async {
@@ -39,6 +41,13 @@ class _MyAppState extends BaseStatefulState<MyApp> {
         return MaterialApp(
           title: 'aNewsApp',
           debugShowCheckedModeBanner: false,
+          localizationsDelegates: const [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: S.delegate.supportedLocales,
           theme: ThemeData.light().copyWith(
             primaryColor: CustomColors.white,
             visualDensity: VisualDensity.adaptivePlatformDensity,

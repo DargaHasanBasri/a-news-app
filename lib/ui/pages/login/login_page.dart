@@ -6,6 +6,7 @@ import 'package:a_news_app/utils/route_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../generated/l10n.dart';
 import '../../widgets/custom_widgets/custom_text_form_field.dart';
 import 'login_view_model.dart';
 
@@ -47,11 +48,11 @@ class _LoginPageState extends BaseStatefulState<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 20, bottom: 10),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, bottom: 10),
                 child: Text(
-                  "Log in",
-                  style: TextStyle(
+                  S.current.login,
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 24,
                     fontWeight: FontWeight.w900,

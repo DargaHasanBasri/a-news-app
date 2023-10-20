@@ -1,8 +1,7 @@
 import 'package:a_news_app/ui/widgets/custom_widgets/custom_radio_button.dart';
 import 'package:flutter/material.dart';
-
 import '../../../base/base_stateful_state.dart';
-import '../../../utils/custom_colors.dart';
+import '../../../generated/l10n.dart';
 
 class SettingsCountryPopup extends StatefulWidget {
   const SettingsCountryPopup({super.key});
@@ -11,8 +10,12 @@ class SettingsCountryPopup extends StatefulWidget {
   State<SettingsCountryPopup> createState() => _SettingsCountryPopupState();
 }
 
-List<String> radioItem = ["Global", "Türkiye", "Almanya"];
-ValueNotifier<String> isSelect = ValueNotifier("Türkiye");
+List<String> radioItem = [
+  S.current.global,
+  S.current.turkish,
+  S.current.germany,
+];
+ValueNotifier<String> isSelect = ValueNotifier(S.current.turkish);
 
 class _SettingsCountryPopupState extends BaseStatefulState<SettingsCountryPopup> {
   @override
@@ -31,7 +34,7 @@ class _SettingsCountryPopupState extends BaseStatefulState<SettingsCountryPopup>
           children: [
             const SizedBox(height: 20),
             Text(
-              "Ülkeyi Değiştir",
+              S.current.changeCountry,
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
@@ -48,17 +51,17 @@ class _SettingsCountryPopupState extends BaseStatefulState<SettingsCountryPopup>
                       ...radioItem
                           .map(
                             (item) => Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: CustomRadioButton(
-                            title: item,
-                            isSelected: isSelect.value == item,
-                            onSelected: () {
-                              isSelect.value = item;
-                              navigationService.popIfBackStackNotEmpty();
-                            },
-                          ),
-                        ),
-                      )
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              child: CustomRadioButton(
+                                title: item,
+                                isSelected: isSelect.value == item,
+                                onSelected: () {
+                                  isSelect.value = item;
+                                  navigationService.popIfBackStackNotEmpty();
+                                },
+                              ),
+                            ),
+                          )
                           .toList(),
                     ],
                   );
@@ -82,12 +85,12 @@ class _SettingsCountryPopupState extends BaseStatefulState<SettingsCountryPopup>
                             color: Colors.transparent,
                             borderRadius: BorderRadius.circular(4),
                           ),
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 14),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 14),
                             child: Center(
                               child: Text(
-                                "İPTAL",
-                                style: TextStyle(
+                                S.current.cancel,
+                                style: const TextStyle(
                                   color: Colors.red,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,
