@@ -1,5 +1,4 @@
 import 'package:a_news_app/base/base_stateful_state.dart';
-import 'package:a_news_app/utils/custom_colors.dart';
 import 'package:flutter/material.dart';
 
 class HourlyWeather extends StatefulWidget {

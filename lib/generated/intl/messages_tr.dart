@@ -48,6 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgotYourPassword":
             MessageLookupByLibrary.simpleMessage("Parolamı Unuttum?"),
         "french": MessageLookupByLibrary.simpleMessage("Fransızca"),
+        "friday": MessageLookupByLibrary.simpleMessage("Cuma"),
         "germany": MessageLookupByLibrary.simpleMessage("Almanya"),
         "global": MessageLookupByLibrary.simpleMessage("Global"),
         "goOn": MessageLookupByLibrary.simpleMessage("Devam Et"),
@@ -57,12 +58,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "life": MessageLookupByLibrary.simpleMessage("Yaşam"),
         "login": MessageLookupByLibrary.simpleMessage("Giriş Yap"),
         "luminousTheme": MessageLookupByLibrary.simpleMessage("Aydınlık Tema"),
+        "monday": MessageLookupByLibrary.simpleMessage("Pazartesi"),
         "nightMode": MessageLookupByLibrary.simpleMessage("Gece Modu"),
         "normal": MessageLookupByLibrary.simpleMessage("Normal"),
         "notifications": MessageLookupByLibrary.simpleMessage("Bildirimler"),
         "password": MessageLookupByLibrary.simpleMessage("Şifre"),
         "quarterGold": MessageLookupByLibrary.simpleMessage("Çeyrek Altın"),
         "register": MessageLookupByLibrary.simpleMessage("Kayıt Ol"),
+        "saturday": MessageLookupByLibrary.simpleMessage("Cumartesi"),
         "science": MessageLookupByLibrary.simpleMessage("Bilim"),
         "scoring": MessageLookupByLibrary.simpleMessage("Puanla"),
         "search": MessageLookupByLibrary.simpleMessage("Arama"),
@@ -73,15 +76,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "software": MessageLookupByLibrary.simpleMessage("Yazılım"),
         "spanish": MessageLookupByLibrary.simpleMessage("İspanyolca"),
         "sport": MessageLookupByLibrary.simpleMessage("Spor"),
+        "sunday": MessageLookupByLibrary.simpleMessage("Pazar"),
         "technology": MessageLookupByLibrary.simpleMessage("Teknoloji"),
         "termsOfUse":
             MessageLookupByLibrary.simpleMessage("Kullanım Koşulları"),
+        "thursday": MessageLookupByLibrary.simpleMessage("Perşembe"),
         "topics": MessageLookupByLibrary.simpleMessage("Konular"),
         "travel": MessageLookupByLibrary.simpleMessage("Gezi"),
+        "tuesday": MessageLookupByLibrary.simpleMessage("Salı"),
         "turkish": MessageLookupByLibrary.simpleMessage("Türkçe"),
         "turkiye": MessageLookupByLibrary.simpleMessage("Türkiye"),
         "userName": MessageLookupByLibrary.simpleMessage("Kullanıcı Adı"),
         "version": MessageLookupByLibrary.simpleMessage("Versiyon"),
-        "veryBig": MessageLookupByLibrary.simpleMessage("Çok Büyük")
+        "veryBig": MessageLookupByLibrary.simpleMessage("Çok Büyük"),
+        "wednesday": MessageLookupByLibrary.simpleMessage("Çarşamba"),
+        "weeklyView": MessageLookupByLibrary.simpleMessage("HAFTALIK GÖRÜNÜM")
       };
 }
