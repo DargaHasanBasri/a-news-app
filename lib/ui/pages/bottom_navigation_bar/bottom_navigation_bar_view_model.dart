@@ -1,6 +1,7 @@
 import 'package:a_news_app/base/base_view_model.dart';
 import 'package:flutter/foundation.dart';
 
+import '../../../generated/l10n.dart';
 import '../../../models/response/fore_cast_response_model.dart';
 import '../../../models/response/genel_para_api_currency_response_model.dart';
 import '../../../models/response/nosy_api_currency_response_model.dart';
@@ -27,17 +28,17 @@ class BottomNavigationBarViewModel extends BaseViewModel {
   }
 
   List<String> categoriesTitle = [
-    "Tümü",
-    "Konular",
-    "Gündem",
-    "Bilim",
-    "Yazılım",
-    "Kültür & Sanat",
-    "Gezi",
-    "Spor",
-    "Eğlence",
-    "Sağlık",
-    "Teknoloji",
-    "Yaşam",
+    S.current.all,
+    S.current.topics,
+    S.current.agenda,
+    S.current.science,
+    S.current.software,
+    S.current.cultureArt,
+    S.current.travel,
+    S.current.sport,
+    S.current.entertainment,
+    S.current.health,
+    S.current.technology,
+    S.current.life,
   ];
 }

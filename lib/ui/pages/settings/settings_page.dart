@@ -5,7 +5,7 @@ import 'package:a_news_app/ui/widgets/dialogs/settings_night_mode_popup.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../base/base_stateful_state.dart';
-import '../../../utils/custom_colors.dart';
+import '../../../generated/l10n.dart';
 import '../../widgets/dialogs/settings_language_popup.dart';
 import 'components/build_title_content.dart';
 import 'settings_view_model.dart';
@@ -46,7 +46,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                     children: [
                       SettingsItem(
                         onPress: () {},
-                        title: "Bildirimler",
+                        title: S.current.notifications,
                         iconAddress: "images/ic_notification.png",
                         iconColor: Colors.red,
                       ),
@@ -55,7 +55,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                         onPress: () => showLanguagePopup(
                           const SettingsNightModePopup(),
                         ),
-                        title: "Gece Modu",
+                        title: S.current.nightMode,
                         iconAddress: "images/ic_night_mode.png",
                       ),
                       const SizedBox(height: 80),
@@ -71,8 +71,8 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: BuildTitleContent(
-                                  title: "Dili Değiştir",
-                                  subTitle: "Türkçe",
+                                  title: S.current.changeLanguage,
+                                  subTitle: S.current.turkish,
                                   onPress: () => showLanguagePopup(
                                     const SettingsLanguagePopup(),
                                   ),
@@ -82,8 +82,8 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: BuildTitleContent(
-                                  title: "Ülkeyi Değiştir",
-                                  subTitle: "Türkiye",
+                                  title: S.current.changeCountry,
+                                  subTitle: S.current.turkish,
                                   onPress: () => showLanguagePopup(
                                     const SettingsCountryPopup(),
                                   ),
@@ -93,8 +93,8 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: BuildTitleContent(
-                                  title: "İçerik Harf Boyutu",
-                                  subTitle: "Normal",
+                                  title: S.current.contentLetterSize,
+                                  subTitle: S.current.normal,
                                   onPress: () => showLanguagePopup(
                                     const SettingsContentLetterSizePopup(),
                                   ),
@@ -117,7 +117,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: BuildTitleContent(
-                                  title: "Puanla",
+                                  title: S.current.scoring,
                                   subTitle: "",
                                   onPress: () => showLanguagePopup(
                                     const SettingsLanguagePopup(),
@@ -128,7 +128,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: BuildTitleContent(
-                                  title: "Yorum Gönder",
+                                  title: S.current.comment,
                                   subTitle: "",
                                   onPress: () => showLanguagePopup(
                                     const SettingsLanguagePopup(),
@@ -139,7 +139,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: BuildTitleContent(
-                                  title: "A-News-App's paylaş",
+                                  title: S.current.shareApp,
                                   subTitle: "",
                                   onPress: () => showLanguagePopup(
                                     const SettingsLanguagePopup(),
@@ -163,7 +163,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: BuildTitleContent(
-                                  title: "Kullanım Koşulları",
+                                  title: S.current.termsOfUse,
                                   subTitle: "",
                                   onPress: () => showLanguagePopup(
                                     const SettingsLanguagePopup(),
@@ -174,7 +174,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: BuildTitleContent(
-                                  title: "A-News-App Hakkında",
+                                  title: S.current.aboutApp,
                                   subTitle: "",
                                   onPress: () => showLanguagePopup(
                                     const SettingsLanguagePopup(),
@@ -182,10 +182,10 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
                                 ),
                               ),
                               const SizedBox(height: 30),
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
                                 child: BuildTitleContent(
-                                  title: "Version",
+                                  title: S.current.version,
                                   subTitle: "1.0.0",
                                   onPress: null,
                                 ),
@@ -238,7 +238,7 @@ class _SettingsPageState extends BaseStatefulState<SettingsPage> {
             child: Padding(
               padding: const EdgeInsets.only(left: 20, top: 20),
               child: Text(
-                "AYARLAR",
+                S.current.settings,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,

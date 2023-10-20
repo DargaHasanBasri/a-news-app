@@ -2,9 +2,8 @@ import 'package:a_news_app/theme_preferences.dart';
 import 'package:a_news_app/ui/widgets/custom_widgets/custom_radio_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../../base/base_stateful_state.dart';
-import '../../../utils/custom_colors.dart';
+import '../../../generated/l10n.dart';
 
 class SettingsNightModePopup extends StatefulWidget {
   const SettingsNightModePopup({super.key});
@@ -13,8 +12,12 @@ class SettingsNightModePopup extends StatefulWidget {
   State<SettingsNightModePopup> createState() => _SettingsNightModePopupState();
 }
 
-List<String> radioItem = ["Aydınlık Tema", "Karanlık Tema", "Otomatik"];
-ValueNotifier<String> isSelect = ValueNotifier("Aydınlık Tema");
+List<String> radioItem = [
+  S.current.luminousTheme,
+  S.current.darkTheme,
+  S.current.automatic,
+];
+ValueNotifier<String> isSelect = ValueNotifier(S.current.luminousTheme);
 
 class _SettingsNightModePopupState extends BaseStatefulState<SettingsNightModePopup> {
   @override
@@ -33,7 +36,7 @@ class _SettingsNightModePopupState extends BaseStatefulState<SettingsNightModePo
           children: [
             const SizedBox(height: 20),
             Text(
-              "Gece Modu",
+              S.current.nightMode,
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
@@ -59,7 +62,7 @@ class _SettingsNightModePopupState extends BaseStatefulState<SettingsNightModePo
                                     onSelected: () {
                                       isSelect.value = item;
                                       navigationService.popIfBackStackNotEmpty();
-                                      provider.changeTheme(isSelect.value ?? "Otomatik");
+                                      provider.changeTheme(isSelect.value ?? S.current.automatic);
                                     },
                                   ),
                                 ),
@@ -89,12 +92,12 @@ class _SettingsNightModePopupState extends BaseStatefulState<SettingsNightModePo
                             color: Colors.transparent,
                             borderRadius: BorderRadius.circular(4),
                           ),
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 14),
+                          child:  Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 14),
                             child: Center(
                               child: Text(
-                                "İPTAL",
-                                style: TextStyle(
+                                S.current.cancel,
+                                style: const TextStyle(
                                   color: Colors.red,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,

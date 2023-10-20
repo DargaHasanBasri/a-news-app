@@ -1,5 +1,4 @@
 import 'package:a_news_app/base/base_stateful_state.dart';
-import 'package:a_news_app/models/response/fore_cast_response_model.dart';
 import 'package:a_news_app/ui/pages/discover/discover_provider.dart';
 import 'package:a_news_app/ui/pages/home/home_provider.dart';
 import 'package:a_news_app/ui/pages/notifications/notifications_provider.dart';
@@ -8,6 +7,7 @@ import 'package:a_news_app/utils/custom_colors.dart';
 import 'package:a_news_app/utils/route_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../../generated/l10n.dart';
 import '../../../models/enums/weather_enum.dart';
 import 'bottom_navigation_bar_view_model.dart';
 import 'components/custom_categories.dart';
@@ -181,7 +181,7 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
                           ),
                         ),
                         Text(
-                          "Home",
+                          S.current.home,
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
@@ -206,7 +206,7 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
                           ),
                         ),
                         Text(
-                          "Discover",
+                          S.current.discover,
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
@@ -231,7 +231,7 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
                           ),
                         ),
                         Text(
-                          "Favorite",
+                          S.current.favorite,
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
@@ -256,7 +256,7 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
                           ),
                         ),
                         Text(
-                          "Search",
+                          S.current.search,
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
@@ -303,7 +303,7 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
                       ),
                       const SizedBox(width: 10),
                       Text(
-                        "Giriş Yap",
+                        S.current.login,
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -376,7 +376,7 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Çeyrek Altın",
+            S.current.quarterGold,
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w700,

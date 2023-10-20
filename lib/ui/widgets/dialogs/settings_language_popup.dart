@@ -1,8 +1,7 @@
 import 'package:a_news_app/ui/widgets/custom_widgets/custom_radio_button.dart';
 import 'package:flutter/material.dart';
-
 import '../../../base/base_stateful_state.dart';
-import '../../../utils/custom_colors.dart';
+import '../../../generated/l10n.dart';
 
 class SettingsLanguagePopup extends StatefulWidget {
   const SettingsLanguagePopup({super.key});
@@ -11,8 +10,14 @@ class SettingsLanguagePopup extends StatefulWidget {
   State<SettingsLanguagePopup> createState() => _SettingsLanguagePopupState();
 }
 
-List<String> radioItem = ["English", "Türkçe", "Deutsch", "Français", "Espanol"];
-ValueNotifier<String> isSelect = ValueNotifier("Türkçe");
+List<String> radioItem = [
+  S.current.english,
+  S.current.turkish,
+  S.current.deutsch,
+  S.current.french,
+  S.current.spanish,
+];
+ValueNotifier<String> isSelect = ValueNotifier(S.current.turkish);
 
 class _SettingsLanguagePopupState extends BaseStatefulState<SettingsLanguagePopup> {
   @override
@@ -31,7 +36,7 @@ class _SettingsLanguagePopupState extends BaseStatefulState<SettingsLanguagePopu
           children: [
             const SizedBox(height: 20),
             Text(
-              "Dili Değiştir",
+              S.current.changeLanguage,
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
@@ -82,12 +87,12 @@ class _SettingsLanguagePopupState extends BaseStatefulState<SettingsLanguagePopu
                             color: Colors.transparent,
                             borderRadius: BorderRadius.circular(4),
                           ),
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 14),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 14),
                             child: Center(
                               child: Text(
-                                "İPTAL",
-                                style: TextStyle(
+                                S.current.cancel,
+                                style: const TextStyle(
                                   color: Colors.red,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,
