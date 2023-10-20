@@ -34,11 +34,21 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends BaseStatefulState<MyApp> {
+
+  @override
+  void initState() {
+    super.initState();
+    BusHelper.eventBus.on<LanguageChangeEvent>().listen((event) {
+      setState(() {});
+    });
+
+  }
   @override
   Widget build(BuildContext context) {
     return Consumer<ThemePreferences>(
       builder: (context, provider, child) {
         return MaterialApp(
+          locale: currentLocale,
           title: 'aNewsApp',
           debugShowCheckedModeBanner: false,
           localizationsDelegates: const [

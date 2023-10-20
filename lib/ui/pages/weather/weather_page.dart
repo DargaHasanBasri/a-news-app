@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 
+import '../../../generated/l10n.dart';
 import '../../../models/enums/weather_enum.dart';
-import '../../../utils/custom_colors.dart';
 import '../../../utils/extensions.dart';
 import 'components/hourly_weather.dart';
 import 'components/location_weather.dart';
@@ -92,7 +92,7 @@ class _WeatherPageState extends BaseStatefulState<WeatherPage> {
                       ),
                       const SizedBox(height: 50),
                       Text(
-                        "HAFTALIK GÖRÜNÜM",
+                        S.current.weeklyView,
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w700,

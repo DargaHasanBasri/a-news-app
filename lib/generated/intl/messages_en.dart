@@ -48,6 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgotYourPassword":
             MessageLookupByLibrary.simpleMessage("Forgot Your Password?"),
         "french": MessageLookupByLibrary.simpleMessage("French"),
+        "friday": MessageLookupByLibrary.simpleMessage("Friday"),
         "germany": MessageLookupByLibrary.simpleMessage("Germany"),
         "global": MessageLookupByLibrary.simpleMessage("Global"),
         "goOn": MessageLookupByLibrary.simpleMessage("Continue"),
@@ -57,12 +58,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "life": MessageLookupByLibrary.simpleMessage("Life"),
         "login": MessageLookupByLibrary.simpleMessage("Log in"),
         "luminousTheme": MessageLookupByLibrary.simpleMessage("Luminous Mode"),
+        "monday": MessageLookupByLibrary.simpleMessage("Monday"),
         "nightMode": MessageLookupByLibrary.simpleMessage("Night Mode"),
         "normal": MessageLookupByLibrary.simpleMessage("Normal"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "quarterGold": MessageLookupByLibrary.simpleMessage("Quarter Gold"),
         "register": MessageLookupByLibrary.simpleMessage("Register"),
+        "saturday": MessageLookupByLibrary.simpleMessage("Saturday"),
         "science": MessageLookupByLibrary.simpleMessage("Science"),
         "scoring": MessageLookupByLibrary.simpleMessage("Scoring"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
@@ -72,14 +75,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "software": MessageLookupByLibrary.simpleMessage("Software"),
         "spanish": MessageLookupByLibrary.simpleMessage("Spanish"),
         "sport": MessageLookupByLibrary.simpleMessage("Sport"),
+        "sunday": MessageLookupByLibrary.simpleMessage("Sunday"),
         "technology": MessageLookupByLibrary.simpleMessage("Technology"),
         "termsOfUse": MessageLookupByLibrary.simpleMessage("Terms of Use"),
+        "thursday": MessageLookupByLibrary.simpleMessage("Thursday"),
         "topics": MessageLookupByLibrary.simpleMessage("Topics"),
         "travel": MessageLookupByLibrary.simpleMessage("Travel"),
+        "tuesday": MessageLookupByLibrary.simpleMessage("Tuesday"),
         "turkish": MessageLookupByLibrary.simpleMessage("Turkish"),
         "turkiye": MessageLookupByLibrary.simpleMessage("Türkiye"),
         "userName": MessageLookupByLibrary.simpleMessage("User Name"),
         "version": MessageLookupByLibrary.simpleMessage("Version"),
-        "veryBig": MessageLookupByLibrary.simpleMessage("Very Big")
+        "veryBig": MessageLookupByLibrary.simpleMessage("Very Big"),
+        "wednesday": MessageLookupByLibrary.simpleMessage("Wednesday"),
+        "weeklyView": MessageLookupByLibrary.simpleMessage("WEEKLY VIEW")
       };
 }

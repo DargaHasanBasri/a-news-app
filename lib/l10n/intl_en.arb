@@ -54,5 +54,13 @@
   "termsOfUse": "Terms of Use",
   "aboutApp": "A-News-App About",
   "version": "Version",
-  "settings": "SETTINGS"
+  "settings": "SETTINGS",
+  "weeklyView": "WEEKLY VIEW",
+  "monday": "Monday",
+  "tuesday": "Tuesday",
+  "wednesday": "Wednesday",
+  "thursday": "Thursday",
+  "friday": "Friday",
+  "saturday": "Saturday",
+  "sunday": "Sunday"
 }

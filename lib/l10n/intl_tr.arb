@@ -54,5 +54,13 @@
   "termsOfUse": "Kullanım Koşulları",
   "aboutApp": "A-News-App Hakkında",
   "version": "Versiyon",
-  "settings": "AYARLAR"
+  "settings": "AYARLAR",
+  "weeklyView": "HAFTALIK GÖRÜNÜM",
+  "monday": "Pazartesi",
+  "tuesday": "Salı",
+  "wednesday": "Çarşamba",
+  "thursday": "Perşembe",
+  "friday": "Cuma",
+  "saturday": "Cumartesi",
+  "sunday": "Pazar"
 }
