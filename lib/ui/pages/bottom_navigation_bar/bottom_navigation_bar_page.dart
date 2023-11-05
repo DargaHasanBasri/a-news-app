@@ -1,4 +1,7 @@
 import 'package:a_news_app/base/base_stateful_state.dart';
+import 'package:a_news_app/generated/l10n.dart';
+import 'package:a_news_app/models/enums/icon_bottom_nav_enum.dart';
+import 'package:a_news_app/models/enums/weather_enum.dart';
 import 'package:a_news_app/ui/pages/discover/discover_provider.dart';
 import 'package:a_news_app/ui/pages/home/home_provider.dart';
 import 'package:a_news_app/ui/pages/notifications/notifications_provider.dart';
@@ -7,8 +10,6 @@ import 'package:a_news_app/utils/custom_colors.dart';
 import 'package:a_news_app/utils/route_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../generated/l10n.dart';
-import '../../../models/enums/weather_enum.dart';
 import 'bottom_navigation_bar_view_model.dart';
 import 'components/custom_categories.dart';
 
@@ -23,7 +24,8 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
   late final BottomNavigationBarViewModel vm;
   late PageController pageController;
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
-  late final WeatherType _weatherType;
+  late WeatherType _weatherType;
+  late IconBottomNavEnum _iconBottomNavEnum;
 
   final List<Widget> pages = [
     const HomeProvider(),
@@ -38,6 +40,7 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
     vm = Provider.of<BottomNavigationBarViewModel>(context, listen: false);
     pageController = PageController(initialPage: 0);
     _weatherType = WeatherType();
+    _iconBottomNavEnum = IconBottomNavEnum();
     listeners();
     //vm.fetchNosyCurrency("ceyrek-altin");
   }
@@ -131,7 +134,7 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
                       vm.pageIndex.value == 0
                           ? (vm.isOpen.value ? "images/ic_open_list.png" : "images/ic_close_list.png")
                           : vm.pageIndex.value == 1
-                              ? "images/ic_home_active.png"
+                              ? "images/ic_active_home.png"
                               : vm.pageIndex.value == 2
                                   ? "images/ic_settings.png"
                                   : "images/ic_settings.png",
@@ -155,105 +158,85 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
               color: CustomColors.customBottomNavigationColor,
             ),
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4),
+              padding: const EdgeInsets.symmetric(vertical: 12),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      InkWell(
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
                         onTap: () => pageController.jumpToPage(0),
                         child: Ink(
                           child: Image.asset(
-                            vm.pageIndex.value == 0 ? "images/ic_home_active.png" : "images/ic_home_inactive.png",
-                            width: 30,
-                            height: 30,
+                            vm.pageIndex.value == 0
+                                ? _iconBottomNavEnum.getBottomNavIconAddress(IconTypeEnum.IC_ACTIVE_HOME)
+                                : _iconBottomNavEnum.getBottomNavIconAddress(IconTypeEnum.IC_INACTIVE_HOME),
+                            color: vm.pageIndex.value == 0 ? CustomColors.white : CustomColors.bottomNavBarIconColor,
+                            width: 26,
+                            height: 26,
                           ),
                         ),
                       ),
-                      Text(
-                        S.current.home,
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: vm.pageIndex.value == 0 ? CustomColors.black : CustomColors.black.withOpacity(0.3),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      InkWell(
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
                         onTap: () => pageController.jumpToPage(1),
                         child: Ink(
                           child: Image.asset(
                             vm.pageIndex.value == 1
-                                ? "images/ic_favorite_active.png"
-                                : "images/ic_favorite_inactive.png",
-                            width: 30,
-                            height: 30,
+                                ? _iconBottomNavEnum.getBottomNavIconAddress(IconTypeEnum.IC_ACTIVE_DISCOVER)
+                                : _iconBottomNavEnum.getBottomNavIconAddress(IconTypeEnum.IC_INACTIVE_DISCOVER),
+                            color: vm.pageIndex.value == 1 ? CustomColors.white : CustomColors.bottomNavBarIconColor,
+                            width: 26,
+                            height: 26,
                           ),
                         ),
                       ),
-                      Text(
-                        S.current.discover,
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: vm.pageIndex.value == 1 ? CustomColors.black : CustomColors.black.withOpacity(0.3),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      InkWell(
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
                         onTap: () => pageController.jumpToPage(2),
                         child: Ink(
                           child: Image.asset(
                             vm.pageIndex.value == 2
-                                ? "images/ic_favorite_active.png"
-                                : "images/ic_favorite_inactive.png",
-                            width: 30,
-                            height: 30,
+                                ? _iconBottomNavEnum.getBottomNavIconAddress(IconTypeEnum.IC_ACTIVE_SEARCH)
+                                : _iconBottomNavEnum.getBottomNavIconAddress(IconTypeEnum.IC_INACTIVE_SEARCH),
+                            color: vm.pageIndex.value == 2 ? CustomColors.white : CustomColors.bottomNavBarIconColor,
+                            width: 26,
+                            height: 26,
                           ),
                         ),
                       ),
-                      Text(
-                        S.current.favorite,
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: vm.pageIndex.value == 2 ? CustomColors.black : CustomColors.black.withOpacity(0.3),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      InkWell(
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
                         onTap: () => pageController.jumpToPage(3),
                         child: Ink(
                           child: Image.asset(
-                            vm.pageIndex.value == 3 ? "images/ic_profile_active.png" : "images/ic_profile_inactive.png",
-                            width: 30,
-                            height: 30,
+                            vm.pageIndex.value == 3
+                                ? _iconBottomNavEnum.getBottomNavIconAddress(IconTypeEnum.IC_ACTIVE_NOTIFICATIONS)
+                                : _iconBottomNavEnum.getBottomNavIconAddress(IconTypeEnum.IC_INACTIVE_NOTIFICATIONS),
+                            color: vm.pageIndex.value == 3 ? CustomColors.white : CustomColors.bottomNavBarIconColor,
+                            width: 26,
+                            height: 26,
                           ),
                         ),
                       ),
-                      Text(
-                        S.current.search,
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: vm.pageIndex.value == 3 ? CustomColors.black : CustomColors.black.withOpacity(0.3),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                 ],
               ),
