@@ -9,4 +9,5 @@ class CustomColors {
   static Color backgroundWeatherColor = const Color(0xffF4F6F5);
   static Color backgroundHomeColor = const Color(0xffF4F5F7);
   static Color smallTextColor = const Color(0xffC6C6C6);
+  static Color bottomNavBarIconColor = const Color(0xff6F777C);
 }

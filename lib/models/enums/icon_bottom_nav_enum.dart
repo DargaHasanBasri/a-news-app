@@ -3,15 +3,15 @@
 class IconBottomNavEnum {
   String getBottomNavIconAddress(IconTypeEnum iconTypeEnum) {
     return switch(iconTypeEnum) {
-      IconTypeEnum.IC_ACTIVE_HOME => "ic_active_home.png",
-      IconTypeEnum.IC_INACTIVE_HOME => "ic_inactive_home.png",
-      IconTypeEnum.IC_ACTIVE_DISCOVER => "ic_active_discover.png",
-      IconTypeEnum.IC_INACTIVE_DISCOVER => "ic_inactive_discover.png",
-      IconTypeEnum.IC_ACTIVE_SEARCH => "ic_active_search.png",
-      IconTypeEnum.IC_INACTIVE_SEARCH => "ic_inactive_search.png",
-      IconTypeEnum.IC_ACTIVE_NOTIFICATIONS => "ic_active_notifications.png",
-      IconTypeEnum.IC_INACTIVE_NOTIFICATIONS => "ic_inactive_notifications.png",
-      _ =>"ic_active_home.png"
+      IconTypeEnum.IC_ACTIVE_HOME => "images/ic_active_home.png",
+      IconTypeEnum.IC_INACTIVE_HOME => "images/ic_inactive_home.png",
+      IconTypeEnum.IC_ACTIVE_DISCOVER => "images/ic_active_discover.png",
+      IconTypeEnum.IC_INACTIVE_DISCOVER => "images/ic_inactive_discover.png",
+      IconTypeEnum.IC_ACTIVE_SEARCH => "images/ic_active_search.png",
+      IconTypeEnum.IC_INACTIVE_SEARCH => "images/ic_inactive_search.png",
+      IconTypeEnum.IC_ACTIVE_NOTIFICATIONS => "images/ic_active_notifications.png",
+      IconTypeEnum.IC_INACTIVE_NOTIFICATIONS => "images/ic_inactive_notifications.png",
+      _ => "images/ic_active_home.png"
     };
   }
 
