@@ -204,7 +204,7 @@ class Astro {
   String? moonrise;
   String? moonset;
   String? moonPhase;
-  String? moonIllumination;
+  int? moonIllumination;
   int? isMoonUp;
   int? isSunUp;
 
