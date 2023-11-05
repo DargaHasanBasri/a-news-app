@@ -45,6 +45,7 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: CustomColors.backgroundHomeColor,
       extendBody: true,
       key: _drawerKey,
       drawer: _customDrawer(),
@@ -86,12 +87,8 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
         valueListenable: vm.isOpen,
         builder: (_, __, ___) {
           return Container(
-            decoration: const BoxDecoration(
-              color: Colors.red,
-              borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(20),
-                bottomLeft: Radius.circular(20),
-              ),
+            decoration: BoxDecoration(
+              color: CustomColors.backgroundHomeColor,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -114,12 +111,13 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 26),
+                  padding: const EdgeInsets.symmetric(vertical: 20),
                   child: Text(
-                    "A-News-App",
+                    "TÜMÜ",
                     style: TextStyle(
                       color: CustomColors.black,
-                      fontSize: 20,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                 ),
@@ -137,8 +135,8 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
                               : vm.pageIndex.value == 2
                                   ? "images/ic_settings.png"
                                   : "images/ic_settings.png",
-                      width: 30,
-                      height: 30,
+                      width: 26,
+                      height: 26,
                     ),
                   ),
                 ),
@@ -152,121 +150,112 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
     return ValueListenableBuilder(
         valueListenable: vm.pageIndex,
         builder: (_, __, ___) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 20,
+          return Container(
+            decoration: BoxDecoration(
+              color: CustomColors.customBottomNavigationColor,
             ),
-            child: Container(
-              decoration: BoxDecoration(
-                color: CustomColors.customBottomNavigationColor,
-                borderRadius: BorderRadius.circular(22),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 4),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        InkWell(
-                          onTap: () => pageController.jumpToPage(0),
-                          child: Ink(
-                            child: Image.asset(
-                              vm.pageIndex.value == 0 ? "images/ic_home_active.png" : "images/ic_home_inactive.png",
-                              width: 30,
-                              height: 30,
-                            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      InkWell(
+                        onTap: () => pageController.jumpToPage(0),
+                        child: Ink(
+                          child: Image.asset(
+                            vm.pageIndex.value == 0 ? "images/ic_home_active.png" : "images/ic_home_inactive.png",
+                            width: 30,
+                            height: 30,
                           ),
                         ),
-                        Text(
-                          S.current.home,
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: vm.pageIndex.value == 0 ? CustomColors.black : CustomColors.black.withOpacity(0.3),
+                      ),
+                      Text(
+                        S.current.home,
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: vm.pageIndex.value == 0 ? CustomColors.black : CustomColors.black.withOpacity(0.3),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      InkWell(
+                        onTap: () => pageController.jumpToPage(1),
+                        child: Ink(
+                          child: Image.asset(
+                            vm.pageIndex.value == 1
+                                ? "images/ic_favorite_active.png"
+                                : "images/ic_favorite_inactive.png",
+                            width: 30,
+                            height: 30,
                           ),
                         ),
-                      ],
-                    ),
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        InkWell(
-                          onTap: () => pageController.jumpToPage(1),
-                          child: Ink(
-                            child: Image.asset(
-                              vm.pageIndex.value == 1
-                                  ? "images/ic_favorite_active.png"
-                                  : "images/ic_favorite_inactive.png",
-                              width: 30,
-                              height: 30,
-                            ),
+                      ),
+                      Text(
+                        S.current.discover,
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: vm.pageIndex.value == 1 ? CustomColors.black : CustomColors.black.withOpacity(0.3),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      InkWell(
+                        onTap: () => pageController.jumpToPage(2),
+                        child: Ink(
+                          child: Image.asset(
+                            vm.pageIndex.value == 2
+                                ? "images/ic_favorite_active.png"
+                                : "images/ic_favorite_inactive.png",
+                            width: 30,
+                            height: 30,
                           ),
                         ),
-                        Text(
-                          S.current.discover,
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: vm.pageIndex.value == 1 ? CustomColors.black : CustomColors.black.withOpacity(0.3),
+                      ),
+                      Text(
+                        S.current.favorite,
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: vm.pageIndex.value == 2 ? CustomColors.black : CustomColors.black.withOpacity(0.3),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      InkWell(
+                        onTap: () => pageController.jumpToPage(3),
+                        child: Ink(
+                          child: Image.asset(
+                            vm.pageIndex.value == 3 ? "images/ic_profile_active.png" : "images/ic_profile_inactive.png",
+                            width: 30,
+                            height: 30,
                           ),
                         ),
-                      ],
-                    ),
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        InkWell(
-                          onTap: () => pageController.jumpToPage(2),
-                          child: Ink(
-                            child: Image.asset(
-                              vm.pageIndex.value == 2
-                                  ? "images/ic_favorite_active.png"
-                                  : "images/ic_favorite_inactive.png",
-                              width: 30,
-                              height: 30,
-                            ),
-                          ),
+                      ),
+                      Text(
+                        S.current.search,
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: vm.pageIndex.value == 3 ? CustomColors.black : CustomColors.black.withOpacity(0.3),
                         ),
-                        Text(
-                          S.current.favorite,
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: vm.pageIndex.value == 2 ? CustomColors.black : CustomColors.black.withOpacity(0.3),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        InkWell(
-                          onTap: () => pageController.jumpToPage(3),
-                          child: Ink(
-                            child: Image.asset(
-                              vm.pageIndex.value == 3
-                                  ? "images/ic_profile_active.png"
-                                  : "images/ic_profile_inactive.png",
-                              width: 30,
-                              height: 30,
-                            ),
-                          ),
-                        ),
-                        Text(
-                          S.current.search,
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: vm.pageIndex.value == 3 ? CustomColors.black : CustomColors.black.withOpacity(0.3),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           );
@@ -275,6 +264,7 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
 
   Widget _customDrawer() {
     return Drawer(
+      backgroundColor: CustomColors.backgroundColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

@@ -1,6 +1,7 @@
 import 'package:a_news_app/base/base_stateful_state.dart';
 import 'package:a_news_app/ui/pages/weather/components/weekly_weather.dart';
 import 'package:a_news_app/ui/pages/weather/weather_view_model.dart';
+import 'package:a_news_app/utils/custom_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
@@ -40,6 +41,7 @@ class _WeatherPageState extends BaseStatefulState<WeatherPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: CustomColors.backgroundWeatherColor,
       body: SafeArea(
         child: Column(
           children: [
@@ -130,10 +132,10 @@ class _WeatherPageState extends BaseStatefulState<WeatherPage> {
 
   Widget _buildAppBar() {
     return Container(
-      color: Theme.of(context).primaryColor,
+      color: CustomColors.backgroundWeatherColor,
       width: double.infinity,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 6),
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 2),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

@@ -9,7 +9,7 @@ import '../utils/custom_colors.dart';
 
 abstract class BaseStatefulState<T extends StatefulWidget> extends State<T> {
   final NavigationService navigationService = locator<NavigationService>();
-  Locale currentLocale = Locale('en');
+  Locale currentLocale = Locale('tr');
   late OverlayEntry? _progressOverlayEntry;
 
   Timer? _timeoutTimer;

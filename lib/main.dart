@@ -19,7 +19,8 @@ Future<void> main() async {
   );
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
-      statusBarColor: Colors.black,
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
     ),
   );
   WidgetsFlutterBinding.ensureInitialized();
