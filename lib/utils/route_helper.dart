@@ -35,7 +35,7 @@ class RouteHelper {
       case RouteHelper.splash:
         return MaterialPageRoute(builder: (context) => const SplashProvider());
       case RouteHelper.home:
-        return MaterialPageRoute(builder: (context) => const HomeProvider());
+        return MaterialPageRoute(builder: (context) => HomeProvider());
       case RouteHelper.onBoarding:
         return MaterialPageRoute(builder: (context) => const OnBoardingProvider());
       case RouteHelper.login:

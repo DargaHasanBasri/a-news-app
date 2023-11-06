@@ -7,10 +7,8 @@ import 'weather_view_model.dart';
 
 class WeatherProvider extends StatelessWidget {
   final ForeCastResponseModel? foreCastModel;
-  const WeatherProvider(
-    this.foreCastModel, {
-    super.key,
-  });
+
+  const WeatherProvider(this.foreCastModel, {super.key});
 
   @override
   Widget build(BuildContext context) {
