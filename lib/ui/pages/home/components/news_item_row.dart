@@ -21,14 +21,14 @@ class _NewsItemRowState extends BaseStatefulState<NewsItemRow> {
           Container(
             width: (MediaQuery.of(context).size.width / 2) - 30,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(8),
               color: Colors.white,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(8),
                   child: Image.asset("images/img_news_1.png"),
                 ),
                 const SizedBox(height: 10),
@@ -72,14 +72,14 @@ class _NewsItemRowState extends BaseStatefulState<NewsItemRow> {
           Container(
             width: (MediaQuery.of(context).size.width / 2) - 30,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(8),
               color: Colors.white,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(8),
                   child: Image.asset("images/img_news_1.png"),
                 ),
                 const SizedBox(height: 10),
