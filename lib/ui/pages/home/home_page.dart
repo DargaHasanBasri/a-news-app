@@ -21,7 +21,7 @@ class _HomePageState extends BaseStatefulState<HomePage> {
         itemCount: 10,
         itemBuilder: (context, index) {
           return const Padding(
-            padding: EdgeInsets.symmetric(vertical: 10),
+            padding: EdgeInsets.symmetric(vertical: 14),
             child: NewsItem(),
           );
         },

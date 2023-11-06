@@ -41,8 +41,8 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
     pageController = PageController(initialPage: 0);
     _weatherType = WeatherType();
     _iconBottomNavEnum = IconBottomNavEnum();
-    listeners();
     //vm.fetchNosyCurrency("ceyrek-altin");
+    listeners();
   }
 
   @override
@@ -119,8 +119,8 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
                     "TÜMÜ",
                     style: TextStyle(
                       color: CustomColors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w700,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w800,
                     ),
                   ),
                 ),
@@ -162,78 +162,70 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Material(
+                  InkWell(
+                    onTap: () => pageController.jumpToPage(0),
+                    child: Container(
                       color: Colors.transparent,
-                      child: InkWell(
-                        onTap: () => pageController.jumpToPage(0),
-                        child: Ink(
-                          child: Image.asset(
-                            vm.pageIndex.value == 0
-                                ? _iconBottomNavEnum.getBottomNavIconAddress(IconTypeEnum.IC_ACTIVE_HOME)
-                                : _iconBottomNavEnum.getBottomNavIconAddress(IconTypeEnum.IC_INACTIVE_HOME),
-                            color: vm.pageIndex.value == 0 ? CustomColors.white : CustomColors.bottomNavBarIconColor,
-                            width: 26,
-                            height: 26,
-                          ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(2),
+                        child: Image.asset(
+                          vm.pageIndex.value == 0
+                              ? _iconBottomNavEnum.getBottomNavIconAddress(IconTypeEnum.IC_ACTIVE_HOME)
+                              : _iconBottomNavEnum.getBottomNavIconAddress(IconTypeEnum.IC_INACTIVE_HOME),
+                          color: vm.pageIndex.value == 0 ? CustomColors.white : CustomColors.bottomNavBarIconColor,
+                          width: 26,
+                          height: 26,
                         ),
                       ),
                     ),
                   ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Material(
+                  InkWell(
+                    onTap: () => pageController.jumpToPage(1),
+                    child: Container(
                       color: Colors.transparent,
-                      child: InkWell(
-                        onTap: () => pageController.jumpToPage(1),
-                        child: Ink(
-                          child: Image.asset(
-                            vm.pageIndex.value == 1
-                                ? _iconBottomNavEnum.getBottomNavIconAddress(IconTypeEnum.IC_ACTIVE_DISCOVER)
-                                : _iconBottomNavEnum.getBottomNavIconAddress(IconTypeEnum.IC_INACTIVE_DISCOVER),
-                            color: vm.pageIndex.value == 1 ? CustomColors.white : CustomColors.bottomNavBarIconColor,
-                            width: 26,
-                            height: 26,
-                          ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(2),
+                        child: Image.asset(
+                          vm.pageIndex.value == 1
+                              ? _iconBottomNavEnum.getBottomNavIconAddress(IconTypeEnum.IC_ACTIVE_DISCOVER)
+                              : _iconBottomNavEnum.getBottomNavIconAddress(IconTypeEnum.IC_INACTIVE_DISCOVER),
+                          color: vm.pageIndex.value == 1 ? CustomColors.white : CustomColors.bottomNavBarIconColor,
+                          width: 26,
+                          height: 26,
                         ),
                       ),
                     ),
                   ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Material(
+                  InkWell(
+                    onTap: () => pageController.jumpToPage(2),
+                    child: Container(
                       color: Colors.transparent,
-                      child: InkWell(
-                        onTap: () => pageController.jumpToPage(2),
-                        child: Ink(
-                          child: Image.asset(
-                            vm.pageIndex.value == 2
-                                ? _iconBottomNavEnum.getBottomNavIconAddress(IconTypeEnum.IC_ACTIVE_SEARCH)
-                                : _iconBottomNavEnum.getBottomNavIconAddress(IconTypeEnum.IC_INACTIVE_SEARCH),
-                            color: vm.pageIndex.value == 2 ? CustomColors.white : CustomColors.bottomNavBarIconColor,
-                            width: 26,
-                            height: 26,
-                          ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(2),
+                        child: Image.asset(
+                          vm.pageIndex.value == 2
+                              ? _iconBottomNavEnum.getBottomNavIconAddress(IconTypeEnum.IC_ACTIVE_SEARCH)
+                              : _iconBottomNavEnum.getBottomNavIconAddress(IconTypeEnum.IC_INACTIVE_SEARCH),
+                          color: vm.pageIndex.value == 2 ? CustomColors.white : CustomColors.bottomNavBarIconColor,
+                          width: 26,
+                          height: 26,
                         ),
                       ),
                     ),
                   ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Material(
+                  InkWell(
+                    onTap: () => pageController.jumpToPage(3),
+                    child: Container(
                       color: Colors.transparent,
-                      child: InkWell(
-                        onTap: () => pageController.jumpToPage(3),
-                        child: Ink(
-                          child: Image.asset(
-                            vm.pageIndex.value == 3
-                                ? _iconBottomNavEnum.getBottomNavIconAddress(IconTypeEnum.IC_ACTIVE_NOTIFICATIONS)
-                                : _iconBottomNavEnum.getBottomNavIconAddress(IconTypeEnum.IC_INACTIVE_NOTIFICATIONS),
-                            color: vm.pageIndex.value == 3 ? CustomColors.white : CustomColors.bottomNavBarIconColor,
-                            width: 26,
-                            height: 26,
-                          ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(2),
+                        child: Image.asset(
+                          vm.pageIndex.value == 3
+                              ? _iconBottomNavEnum.getBottomNavIconAddress(IconTypeEnum.IC_ACTIVE_NOTIFICATIONS)
+                              : _iconBottomNavEnum.getBottomNavIconAddress(IconTypeEnum.IC_INACTIVE_NOTIFICATIONS),
+                          color: vm.pageIndex.value == 3 ? CustomColors.white : CustomColors.bottomNavBarIconColor,
+                          width: 26,
+                          height: 26,
                         ),
                       ),
                     ),

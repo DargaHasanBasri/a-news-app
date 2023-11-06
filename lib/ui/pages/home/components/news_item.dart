@@ -11,6 +11,7 @@ class NewsItem extends StatefulWidget {
 }
 
 class _NewsItemState extends BaseStatefulState<NewsItem> {
+  ValueNotifier<bool> isSave = ValueNotifier(false);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,6 +38,51 @@ class _NewsItemState extends BaseStatefulState<NewsItem> {
               ),
             ),
             const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: Row(
+                children: [
+                  Text(
+                    "news.com.tr - 5 dakika",
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: CustomColors.textGrey,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const Spacer(),
+                  Row(
+                    children: [
+                      ValueListenableBuilder(
+                          valueListenable: isSave,
+                          builder: (_, __, ___) {
+                            return InkWell(
+                              onTap: () => isSave.value = !isSave.value,
+                              child: Ink(
+                                child: Image.asset(
+                                  isSave.value ? "images/ic_active_save.png" : "images/ic_inactive_save.png",
+                                  height: 18,
+                                  width: 18,
+                                ),
+                              ),
+                            );
+                          }),
+                      const SizedBox(width: 30),
+                      InkWell(
+                        onTap: () {},
+                        child: Ink(
+                          child: Image.asset(
+                            "images/ic_share.png",
+                            height: 20,
+                            width: 20,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
