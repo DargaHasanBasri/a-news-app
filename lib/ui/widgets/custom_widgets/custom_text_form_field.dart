@@ -7,6 +7,8 @@ class CustomTextFormField extends StatefulWidget {
   final TextEditingController controller;
   final String hintText;
   final double borderRadius;
+  final double contentPadding;
+  final double hintFontSize;
   final Function? onChanged;
   final bool? multiline;
   final int? maxLines;
@@ -18,12 +20,15 @@ class CustomTextFormField extends StatefulWidget {
   final Color borderColor;
   final bool isRequired;
   final bool? isAutoTrue;
+  final String imageAddress;
 
-  CustomTextFormField({
+  const CustomTextFormField({
     super.key,
     required this.controller,
     String? hintText,
     double? borderRadius,
+    double? contentPadding,
+    double? hintFontSize,
     String? textFieldName,
     bool? multiline,
     bool? isAutoTrue,
@@ -34,19 +39,23 @@ class CustomTextFormField extends StatefulWidget {
     Color? enabledBorderColor,
     Color? focusedBorderColor,
     Color? borderColor,
+    String? imageAddress,
     this.onChanged,
     this.isRequired = false,
   })  : inputType = inputType ?? TextInputType.text,
         borderRadius = borderRadius ?? 16.0,
+        contentPadding = contentPadding ?? 16.0,
+        hintFontSize = hintFontSize ?? 14.0,
         textFieldBgColor = textFieldBgColor ?? Colors.white,
-        disabledBorderColor = disabledBorderColor ?? CustomColors.black.withOpacity(0.3),
-        enabledBorderColor = enabledBorderColor ?? CustomColors.black.withOpacity(0.3),
-        focusedBorderColor = focusedBorderColor ?? CustomColors.black.withOpacity(0.3),
-        borderColor = borderColor ?? CustomColors.black.withOpacity(0.3),
+        disabledBorderColor = disabledBorderColor ?? Colors.transparent,
+        enabledBorderColor = enabledBorderColor ?? Colors.transparent,
+        focusedBorderColor = focusedBorderColor ?? Colors.transparent,
+        borderColor = borderColor ?? Colors.transparent,
         hintText = hintText ?? "",
         multiline = multiline ?? false,
         isAutoTrue = isAutoTrue ?? false,
-        maxLines = maxLines ?? 1;
+        maxLines = maxLines ?? 1,
+        imageAddress = imageAddress ?? "images/ic_active_search.png";
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -62,11 +71,19 @@ class _CustomTextFormFieldState extends BaseStatefulState<CustomTextFormField> {
       maxLines: widget.maxLines,
       onChanged: _onChanged,
       decoration: InputDecoration(
+        prefixIcon: Image.asset(
+          widget.imageAddress,
+          height: 20,
+          width: 20,
+          scale: 4,
+          color: CustomColors.pastelGrey,
+        ),
+        contentPadding: EdgeInsets.all(widget.contentPadding),
         hintText: widget.hintText,
         hintStyle: TextStyle(
-          fontSize: 14,
+          fontSize: widget.hintFontSize,
           fontWeight: FontWeight.w500,
-          color: CustomColors.black,
+          color: CustomColors.osloGrey,
         ),
         filled: true,
         fillColor: widget.textFieldBgColor,
