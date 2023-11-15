@@ -1,5 +1,6 @@
-import 'package:flutter/foundation.dart';
+import 'package:a_news_app/base/base_view_model.dart';
+import 'package:flutter/cupertino.dart';
 
-class DiscoverViewModel extends ChangeNotifier {
-
+class DiscoverViewModel extends BaseViewModel {
+  TextEditingController searchController = TextEditingController();
 }

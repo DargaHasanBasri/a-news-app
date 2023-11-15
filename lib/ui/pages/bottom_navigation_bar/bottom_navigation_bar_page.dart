@@ -24,9 +24,9 @@ class _BottomNavigationBarPageState extends BaseStatefulState<BottomNavigationBa
 
   final List<Widget> pages = [
     const HomeProvider(),
-    const NotificationsProvider(),
     const DiscoverProvider(),
     const SearchProvider(),
+    const NotificationsProvider(),
   ];
 
   @override
